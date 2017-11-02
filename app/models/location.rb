@@ -1,4 +1,4 @@
-class RestroomSite < ApplicationRecord
+class Location < ApplicationRecord
     validates :address, presence: true
     
     has_many :restrooms

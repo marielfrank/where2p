@@ -1,6 +1,6 @@
-class CreateRestroomSites < ActiveRecord::Migration[5.1]
+class CreateLocations < ActiveRecord::Migration[5.1]
   def change
-    create_table :restroom_sites do |t|
+    create_table :locations do |t|
       t.string :address
       t.integer :neighborhood_id
 
