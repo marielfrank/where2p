@@ -12,9 +12,13 @@ class Restroom < ApplicationRecord
     has_many :tags, :through => :restaurant_tags
 
     def average_rating
+        self.ratings_total/(ratings.size)
+    end
+
+    def ratings_total
         ratings.inject do |sum, rating|
             sum + rating.value
-        end/(ratings.size)
+        end
     end
 
     def address
