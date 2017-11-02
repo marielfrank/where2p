@@ -8,8 +8,8 @@ class Restroom < ApplicationRecord
     has_many :ratings
     has_many :users, :through => :ratings
 
-    has_many :restaurant_tags
-    has_many :tags, :through => :restaurant_tags
+    has_many :restroom_tags
+    has_many :tags, :through => :restroom_tags
 
     def average_rating
         self.ratings_total/(ratings.size)
