@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/logout' => 'sessions#destroy'
   resources :restrooms, :locations, :neighborhoods, :tags, :ratings, :users
-  resources :session, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
 end
