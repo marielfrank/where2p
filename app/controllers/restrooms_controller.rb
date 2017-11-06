@@ -10,6 +10,12 @@ class RestroomController < ApplicationController
     end
 
     def create
+        @restroom = Restroom.new(restroom_params)
+        if @restroom && @restroom.save
+            redirect_to restroom_path(@restroom)
+        else
+            redirect_to new_restroom_path, flash: {message: @restroom.errors.full_messages.join(", ")}
+        end
     end
 
     def show
@@ -19,6 +25,11 @@ class RestroomController < ApplicationController
     end
 
     def update
+        if @restroom.update(restroom_params)
+            redirect_to restroom_path(@restroom)
+        else
+            redirect_to edit_restroom_path, flash: {message: @restroom.errors.full_messages.join(", ")}
+        end
     end
 
     def destroy
