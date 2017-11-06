@@ -55,5 +55,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dotenv-rails'
 
+# for bootstrap
 gem 'bootstrap'
 gem 'jquery-rails'
