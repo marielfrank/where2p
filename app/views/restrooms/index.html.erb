@@ -1,0 +1,6 @@
+<h1>where2p near you</h1>
+<% @restrooms.each do |rr| %>
+    <h2><%= rr.name %></h2>
+    <%= rr.address %>
+    <%= rr.neighborhood.name %>
+<% end %>

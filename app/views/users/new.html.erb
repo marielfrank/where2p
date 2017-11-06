@@ -1,0 +1,7 @@
+<%= form_for @user do |f| %>
+    <%= f.text_field :name %>
+    <%= f.text_field :email %>
+    <%= f.text_field :password %>
+    <%= f.submit 'Sign Up' %>
+<% end %>
+<%#= render partial: 'form', locals: {user: @user} %>
