@@ -1,4 +1,4 @@
-class RestroomController < ApplicationController
+class RestroomsController < ApplicationController
     before_action :set_restroom, only: [:show, :edit, :update, :destroy]
 
     def index

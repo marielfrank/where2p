@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
-    before_action :
+
     before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     def new
-        @user = user.new
+        @user = User.new
     end
 
     def create
-        @user = user.new(user_params)
+        @user = User.new(user_params)
         if @user && @user.save
             session[:user_id] = @user.id
             redirect_to restrooms_path, flash: {message: "Your profile has been created."}
