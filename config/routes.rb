@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   get '/login' => 'sessions#new'
   post '/logout' => 'sessions#destroy'
-  resources :restrooms, :locations, :neighborhoods, :tags, :ratings, :users
+  resources :restrooms, :locations, :neighborhoods, :ratings, :users
+  resources :tags, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
 end
