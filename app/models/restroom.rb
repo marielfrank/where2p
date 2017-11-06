@@ -11,6 +11,8 @@ class Restroom < ApplicationRecord
     has_many :restroom_tags
     has_many :tags, :through => :restroom_tags
 
+    accepts_nested_attributes_for :tags, reject_if: proc { |attributes| attributes['description'].blank? || Attribute.find_by(description: attributes['description'])}
+
     def average_rating
         self.ratings_total/(ratings.size)
     end
