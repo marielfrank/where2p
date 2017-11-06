@@ -9,6 +9,7 @@
   </head>
 
   <body>
+    <%= content_tag :div, flash[:message], id: "flash_message" if flash[:message] %>
     <%= yield %>
   </body>
 </html>
