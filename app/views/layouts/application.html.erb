@@ -15,20 +15,19 @@
           <a class="navbar-brand" href="#">where2p</a>
         </div>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
+          <span class="glyphicon glyphicon-align-justify"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="nav navbar-nav ml-auto">
             <% if !!current_user %>
               <li class="nav-item">
-                <%= link_to logout_path, method: 'post' do %>
+                <%= link_to logout_path, method: 'post', class: 'nav-link' do %>
                   <span class="glyphicon glyphicon-log-out"></span> Sign Out
                 <% end %>
               </li>
             <% else %>
-              <li class="nav-item"><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li class="nav-item"><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+              <li class="nav-item"><a href="/signup" class="nav-link"><span class="oi oi-person"></span> Sign Up</a></li>
+              <li class="nav-item"><a href="/login" class="nav-link"><span class="oi oi-account-logout"></span> Log In</a></li>
             <% end %>
           </ul>
         </div>
