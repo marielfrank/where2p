@@ -1,0 +1,18 @@
+<%= form_for @restroom do |f| %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+    <p>Choose address from below:</p>
+    <%= f.collection_select(:location_id, Location.all, :id, :address, prompt: true) %><br>
+    <p>Or add the restroom's address here:</p>
+    <%= f.fields_for @location do |location_attributes| %>
+        <%= location_attributes.text_field :address %>
+    <% end %>
+    <p>Select tags</p>
+    <%= f.collection_check_boxes :tag_ids, Category.all, :id, :name %><br>
+    <%= f.fields_for :tags, @restroom.tags.build do |tags_attributes| %>
+        <%= tags_attributes.text_field :name %>
+    <% end %><br>
+    <%= f.label :rating %><br>
+    <%= f.number_field :rating %><br>
+    <%= f.submit 'Sign Up' %>
+<% end %>

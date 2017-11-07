@@ -7,6 +7,7 @@ class RestroomsController < ApplicationController
 
     def new
         @restroom = Restroom.new
+        @location = Location.new
     end
 
     def create
@@ -22,6 +23,7 @@ class RestroomsController < ApplicationController
     end
 
     def edit
+        @location = Location.new
     end
 
     def update
@@ -42,6 +44,6 @@ class RestroomsController < ApplicationController
     end
 
     def restroom_params
-        params.require(:restroom).permit(:name, :location_id, :tag_ids[], :tags_attributes[:description])
+        params.require(:restroom).permit(:name, :location_id, :location_attributes[:name], :tag_ids[], :tags_attributes[:description])
     end
 end
