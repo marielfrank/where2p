@@ -8,11 +8,9 @@
         <%= location_attributes.text_field :address %>
     <% end %>
     <p>Select tags</p>
-    <%= f.collection_check_boxes :tag_ids, Category.all, :id, :name %><br>
-    <%= f.fields_for :tags, @restroom.tags.build do |tags_attributes| %>
-        <%= tags_attributes.text_field :name %>
-    <% end %><br>
-    <%= f.label :rating %><br>
-    <%= f.number_field :rating %><br>
-    <%= f.submit 'Sign Up' %>
+    <%#= f.collection_check_boxes :tag_ids, Tag.all, :id, :description %><br>
+    <%#= f.fields_for :tags, @restroom.tags.build do |tags_attributes| %>
+        <%#= tags_attributes.text_field :description %>
+    <%# end %><br>
+    <%= f.submit %>
 <% end %>

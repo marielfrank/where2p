@@ -1,5 +1,5 @@
 class Restroom < ApplicationRecord
-    validates :location_id, presence: true
+    #validates :location_id, presence: true
     validates :name, uniqueness: true
 
     belongs_to :location
@@ -11,7 +11,7 @@ class Restroom < ApplicationRecord
     has_many :restroom_tags
     has_many :tags, :through => :restroom_tags
 
-    accepts_nested_attributes_for :tags, reject_if: proc { |attributes| attributes['description'].blank? || Attribute.find_by(description: attributes['description'])}
+    accepts_nested_attributes_for :tags, reject_if: proc { |attributes| attributes['description'].blank? || Attribute.find_by(description: attributes['description'])}, :allow_destroy => true
 
     def average_rating
         self.ratings_total/(ratings.size)
