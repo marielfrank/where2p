@@ -1,0 +1,8 @@
+<h1>Restrooms tagged as <%= @tag.description %></h1>
+<% if @tag.restrooms.empty? %>
+    <p>Be the first to add restrooms with this tag!</p>
+<% else %>
+    <% @tag.restrooms.each do |restroom| %>
+        <p><%= link_to restroom.name, restroom_path(restroom) %></p>
+    <% end %>
+<% end %>

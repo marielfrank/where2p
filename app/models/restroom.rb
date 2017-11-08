@@ -1,9 +1,8 @@
 class Restroom < ApplicationRecord
-    #validates :location_id, presence: true
     validates :name, uniqueness: true
+    validates :neighborhood_id, presence: true
 
-    belongs_to :location
-    delegate :neighborhood, :to => :location
+    belongs_to :neighborhood
 
     has_many :ratings
     has_many :users, :through => :ratings
@@ -23,7 +22,7 @@ class Restroom < ApplicationRecord
         end
     end
 
-    def address
-        location.address
+    def rating_quantity
+        self.ratings.size
     end
 end

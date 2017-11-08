@@ -12,13 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20171108191028) do
 
-  create_table "locations", force: :cascade do |t|
-    t.string "address"
-    t.integer "neighborhood_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "neighborhoods", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -42,7 +35,8 @@ ActiveRecord::Schema.define(version: 20171108191028) do
 
   create_table "restrooms", force: :cascade do |t|
     t.string "name"
-    t.integer "location_id"
+    t.string "address"
+    t.integer "neighborhood_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

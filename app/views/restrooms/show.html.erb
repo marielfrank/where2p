@@ -1,0 +1,14 @@
+<h1><%= @restroom.name %></h1>
+<h3>Address: <%= @restroom.address %> in <%= @restroom.neighborhood.name %></h3>
+<% if !@restroom.ratings.empty? %>
+    <p><b>Rating: </b><%= @restroom.average_rating %></p>
+<% end %>
+
+<% if @restroom.tags.empty? %>
+    <p>Be the first to add tags to this restroom!</p>
+<% else %>
+    <p><b>Tags: </b></p>
+    <% @restroom.tags.each do |tag| %>
+        <p><%= link_to tag.description, tag_path(tag) %></p>
+    <% end %>
+<% end %>

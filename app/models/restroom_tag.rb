@@ -1,3 +1,4 @@
 class RestroomTag < ApplicationRecord
-    has_many :tags
+    belongs_to :restroom
+    belongs_to :tag
 end

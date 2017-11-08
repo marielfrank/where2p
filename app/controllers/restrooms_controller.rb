@@ -7,7 +7,6 @@ class RestroomsController < ApplicationController
 
     def new
         @restroom = Restroom.new
-        @location = @restroom.build_location
     end
 
     def create
@@ -23,7 +22,6 @@ class RestroomsController < ApplicationController
     end
 
     def edit
-        @location = Location.new
     end
 
     def update
@@ -40,10 +38,10 @@ class RestroomsController < ApplicationController
     private
 
     def set_restroom
-        Restroom.find_by(id: params[:id])
+        @restroom = Restroom.find_by(id: params[:id])
     end
 
     def restroom_params
-        params.require(:restroom).permit(:name, :location_id, location_attributes: [:name], tag_ids: [], tags_attributes: [:description])
+        params.require(:restroom).permit(:name, :neighborhood_id, tag_ids: [], tags_attributes: [:description])
     end
 end

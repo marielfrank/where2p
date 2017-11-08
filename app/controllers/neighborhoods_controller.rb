@@ -35,7 +35,7 @@ class neighborhoodsController < ApplicationController
     private
 
     def set_neighborhood
-        Neighborhood.find_by(id: params[:id])
+        @neighborhood = Neighborhood.find_by(id: params[:id])
     end
 
 end
