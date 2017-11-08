@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
             @user = User.find_or_create_by(uid: auth['uid']) do |u|
                 u.name = auth['info']['name']
                 u.email = auth['info']['email']
+                u.password ||= SecureRandom.base58
             end
         else
             @user = User.find_by(email: params[:user][:email])
@@ -18,8 +19,9 @@ class SessionsController < ApplicationController
                 redirect_to login_path, flash: {message: flash_error(@user)}
             end
         end
+        
         session[:user_id] = @user.id
-        redirect_to restrooms_path, flash: {message: "Welcome, #{@user.name}!"}
+        redirect_to restrooms_path, flash: {message: "Welcome, #{current_user.name}!"}
     end
 
     def destroy

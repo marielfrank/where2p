@@ -33,7 +33,9 @@
         </div>
       </div>
     </nav>
-    <%= content_tag :div, flash[:message], id: "flash_message" if flash[:message] %>
-    <%= yield %>
+    <div class="container">
+      <%= content_tag :div, flash[:message], id: "flash_message" if flash[:message] %>
+      <%= yield %>
+    </div>
   </body>
 </html>

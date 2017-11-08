@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     def new
+        redirect_to restrooms_path if logged_in?
         @user = User.new
     end
 
