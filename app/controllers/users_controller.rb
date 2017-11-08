@@ -12,7 +12,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to restrooms_path, flash: {message: "Your profile has been created."}
         else
-            redirect_to new_user_path, flash: {message: @user.errors.full_messages.join(", ")}
+            redirect_to new_user_path, flash: {message: flash_error(@user)}
         end
     end
 
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         if @user.update(user_params)
             redirect_to restrooms_path, flash: {message: "Your profile has been updated."}
         else
-            redirect_to edit_user_path, flash: {message: @user.errors.full_messages.join(", ")}
+            redirect_to edit_user_path, flash: {message: flash_error(@user)}
         end
     end
 

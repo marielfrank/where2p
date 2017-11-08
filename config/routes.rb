@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   get '/login' => 'sessions#new'
   post '/logout' => 'sessions#destroy'
+  get '/auth/google_oauth2/callback' => 'sessions#create'
+
   resources :restrooms do
     resources :ratings
   end
