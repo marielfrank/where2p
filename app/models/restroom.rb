@@ -17,8 +17,9 @@ class Restroom < ApplicationRecord
     end
 
     def ratings_total
-        ratings.inject do |sum, rating|
-            sum + rating.value
+        vals = ratings.collect{ |rat| rat.value }
+        vals.inject do |sum, val|
+            sum + val
         end
     end
 

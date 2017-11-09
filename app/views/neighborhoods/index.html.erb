@@ -3,10 +3,10 @@
     <p><%= link_to n.name, neighborhood_path(n) %></p>
 <% end %>
 <%# if current_user.admin? %>
-    <h1>Add a new neighborhood</h1>
+    <h3>Add a new neighborhood</h3>
     <%= form_for @neighborhood do |f| %>
         <%= f.label :name %>
         <%= f.text_field :name %>
-        <%= f.submit %>
+        <%= f.submit 'Add neighborhood', class: 'btn cta' %>
     <% end %>
 <%# end %>

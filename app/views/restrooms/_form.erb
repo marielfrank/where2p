@@ -1,0 +1,9 @@
+<%= f.label :name %><br>
+<%= f.text_field :name %><br>
+<%= f.label :address %><br>
+<%= f.text_field :address %><br>
+<%= f.label :neighborhood %><br>
+<%= f.collection_select(:neighborhood_id, Neighborhood.all, :id, :name, prompt: true) %><br>
+
+<p>Add tags</p>
+<%= render partial: 'add_tags', locals: {restroom: restroom, f: f} %>
