@@ -11,7 +11,8 @@ class NeighborhoodsController < ApplicationController
         if @neighborhood && @neighborhood.save
             redirect_to neighborhood_path(@neighborhood)
         else
-            redirect_to new_neighborhood_path, flash: {message: flash_error(@neighborhood)}
+            flash[:message] = flash_error(@neighborhood)
+            render 'neighborhoods/new'
         end
     end
 
@@ -25,7 +26,8 @@ class NeighborhoodsController < ApplicationController
         if @neighborhood.update(neighborhood_params)
             redirect_to neighborhood_path(@neighborhood)
         else
-            redirect_to edit_neighborhood_path, flash: {message: flash_error(@neighborhood)}
+            flash[:message] = flash_error(@neighborhood)
+            render 'neighborhoods/edit'
         end
     end
 
