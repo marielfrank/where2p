@@ -1,6 +1,6 @@
 <h1>where2p near you</h1>
 <% @restrooms.each do |rr| %>
-    <p><%= link_to rr.name, restroom_path(rr) %> &mdash; <%= rr.neighborhood.name %></p>
+    <p><strong><%= link_to rr.name, restroom_path(rr) %></strong> &mdash; <%= rr.neighborhood.name %></p>
 <% end %><br>
 
 <%= link_to "Add a restroom you visited", new_restroom_path, class: 'btn cta' %>

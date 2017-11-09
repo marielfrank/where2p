@@ -14,7 +14,7 @@ class RestroomsController < ApplicationController
         if @restroom && @restroom.save
             redirect_to restroom_path(@restroom)
         else
-            redirect_to new_restroom_path, flash: {message: @restroom.errors.full_messages.join(", ")}
+            redirect_to new_restroom_path, flash: {message: flash_error(@restroom)}
         end
     end
 
@@ -28,7 +28,7 @@ class RestroomsController < ApplicationController
         if @restroom.update(restroom_params)
             redirect_to restroom_path(@restroom)
         else
-            redirect_to edit_restroom_path, flash: {message: @restroom.errors.full_messages.join(", ")}
+            redirect_to edit_restroom_path, flash: {message: flash_error(@restroom)}
         end
     end
 
