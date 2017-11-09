@@ -60,6 +60,9 @@ gem 'dotenv-rails'
 gem 'oauth'
 gem 'omniauth-google-oauth2'
 
+# for authorization
+gem 'cancancan'
+
 # for bootstrap
 gem 'bootstrap'
 gem 'jquery-rails'
