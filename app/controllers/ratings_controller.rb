@@ -2,8 +2,8 @@ class RatingsController < ApplicationController
     def index
         if params[:restroom_id]
             @restroom = set_restroom
-            @ratings = @restroom.ratings
             @rating = @restroom.ratings.build(user_id: current_user.id)
+            @ratings = @restroom.ratings
         else
             @ratings = Rating.all
         end

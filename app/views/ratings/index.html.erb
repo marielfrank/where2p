@@ -3,9 +3,11 @@
     Be the first to rate this restroom!
 <% else %>
     <% @ratings.each do |rat| %>
-        <h4><strong><%= pluralize(rat.value, 'star') %></strong></h4>
-        <p><%= rat.comment %></p>
-        ~ <%= rat.user.name %><br>
+        <% if !!rat.id %>
+            <h4><strong><%= pluralize(rat.value, 'star') %></strong></h4>
+            <p><%= rat.comment %></p>
+            ~ <%= rat.user.name %><br>
+        <% end %>
     <% end %>
 <% end %>
 

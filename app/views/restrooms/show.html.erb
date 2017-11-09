@@ -20,5 +20,5 @@
 <% end %>
 <%= form_for @restroom do |f| %>
     <%= render partial: 'add_tags', locals: {restroom: @restroom, f: f} %>
-    <%= f.submit "Add tag(s) to #{@restroom.name}" , class: 'btn cta' %>
+    <%= f.submit "Add tags to #{@restroom.name}" , class: 'btn cta' %>
 <% end %>

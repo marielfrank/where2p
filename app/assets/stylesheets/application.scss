@@ -1,6 +1,12 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+body {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
 .btn.cta {
     color: #fff;
     background-color: #222;
