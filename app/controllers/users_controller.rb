@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user && @user.save
             session[:user_id] = @user.id
-            redirect_to restrooms_path, flash: {message: "Your profile has been created."}
+            redirect_to restrooms_path, flash: {message: "Welcome, #{current_user.name}!"}
         else
             redirect_to new_user_path, flash: {message: flash_error(@user)}
         end

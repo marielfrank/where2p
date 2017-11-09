@@ -6,22 +6,22 @@ class SessionsController < ApplicationController
     end
 
     def create
-        if auth[:uid]
+        if auth
             @user = User.find_or_create_by(uid: auth['uid']) do |u|
                 u.name = auth['info']['name']
                 u.email = auth['info']['email']
                 u.password ||= SecureRandom.base58
             end
-        else
+            session[:user_id] = @user.id
+            redirect_to restrooms_path, flash: {message: "Welcome, #{current_user.name}!"}
+        elsif User.find_by(email: params[:user][:email])
             @user = User.find_by(email: params[:user][:email])
-            if @user && @user.authenticate(params[:user][:password])
-            else
-                redirect_to login_path, flash: {message: flash_error(@user)}
-            end
+            redirect_to login_path, flash: {message: flash_error(@user)} if !@user.authenticate(params[:user][:password])
+            session[:user_id] = @user.id
+            redirect_to restrooms_path, flash: {message: "Welcome, #{current_user.name}!"}
+        else
+            redirect_to login_path, flash: {message: "We weren't able to find a user by that email address..."}
         end
-        
-        session[:user_id] = @user.id
-        redirect_to restrooms_path, flash: {message: "Welcome, #{current_user.name}!"}
     end
 
     def destroy

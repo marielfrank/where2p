@@ -42,6 +42,6 @@ class RestroomsController < ApplicationController
     end
 
     def restroom_params
-        params.require(:restroom).permit(:name, :neighborhood_id, tag_ids: [], tags_attributes: [:description])
+        params.require(:restroom).permit(:name, :address, :neighborhood_id, tag_ids: [], tags_attributes: [:description])
     end
 end

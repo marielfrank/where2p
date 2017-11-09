@@ -1,7 +1,8 @@
-class neighborhoodsController < ApplicationController
+class NeighborhoodsController < ApplicationController
     before_action :set_neighborhood, only: [:show, :edit, :update, :destroy]
 
-    def new
+    def index
+        @neighborhoods = Neighborhood.all
         @neighborhood = Neighborhood.new
     end
 
@@ -36,6 +37,10 @@ class neighborhoodsController < ApplicationController
 
     def set_neighborhood
         @neighborhood = Neighborhood.find_by(id: params[:id])
+    end
+
+    def neighborhood_params
+        params.require(:neighborhood).permit(:name)
     end
 
 end

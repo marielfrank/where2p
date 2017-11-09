@@ -1,0 +1,12 @@
+<h1>Find restrooms by neighborhood</h1>
+<% @neighborhoods.each do |n| %>
+    <p><%= link_to n.name, neighborhood_path(n) %></p>
+<% end %>
+<%# if current_user.admin? %>
+    <h1>Add a new neighborhood</h1>
+    <%= form_for @neighborhood do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        <%= f.submit %>
+    <% end %>
+<%# end %>

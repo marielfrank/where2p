@@ -1,0 +1,9 @@
+<h1>Restrooms in <%= @neighborhood.name %></h1>
+<% if @neighborhood.restrooms.empty? %>
+    <p>Be the first to add a restroom in this neighborhood!</p>
+    <p><%= link_to "Add a new restroom", new_restroom_path %></p>
+<% else %>
+    <% @neighborhood.restrooms.each do |restroom| %>
+        <p><%= link_to restroom.name, restroom_path(restroom) %></p>
+    <% end %>
+<% end %>

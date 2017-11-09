@@ -11,5 +11,9 @@ class ApplicationController < ActionController::Base
     User.find_by(id: session[:user_id])
   end
 
+  def flash_error(object)
+    object.errors.full_messages.join(", ")
+  end
+
   helper_method :current_user
 end
