@@ -1,3 +1,4 @@
+<h1>Add a new restroom</h1>
 <%= form_for @restroom do |f| %>
     <%= f.label :name %><br>
     <%= f.text_field :name %><br>
@@ -9,7 +10,7 @@
     <p>Select tags</p>
     <%#= f.collection_check_boxes :tag_ids, Tag.all, :id, :description %><br>
     <%#= f.fields_for :tags, @restroom.tags.build do |tags_attributes| %>
-        <%#= tags_attributes.text_field :description %>
-    <%# end %><br>
-    <%= f.submit %>
+        <%#= tags_attributes.text_field :description %><br>
+    <%# end %>
+    <%= f.submit "Add restroom", class: 'btn cta' %>
 <% end %>

@@ -1,2 +1,25 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+.btn.cta {
+    color: #fff;
+    background-color: #222;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.btn.google-login {
+    background: url(http://iosicongallery.com/img/512/google-2015.png) left center no-repeat;
+    background-size: 30px 30px;
+    padding-left: 35px;
+    box-shadow: 0 0 2px #777;
+    color: #4286f5;
+}
+
+.btn.google-login:hover, .btn.google-login:active {
+    box-shadow: 0 0 4px #4286f5;
+}
+
+a {
+    color: #49ae95;
+}
