@@ -5,4 +5,8 @@ class User < ApplicationRecord
     
     has_many :ratings
     has_many :restrooms, :through => :ratings
+
+    def admin?
+        self.admin
+    end
 end

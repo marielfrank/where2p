@@ -1,11 +1,6 @@
 <h1>Sign Up</h1>
 <%= form_for @user do |f| %>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
-    <%= f.label :email %><br>
-    <%= f.email_field :email %><br>
-    <%= f.label :password %><br>
-    <%= f.password_field :password %><br>
+    <%= render partial: 'form', locals: {f: f} %>
     <%= f.submit 'Sign Up', class: 'btn cta' %>
 <% end %>
 <%= render 'sessions/oauth-link' %>
