@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_only
-    redirect_to restrooms_path, flash: {message: "You must log in as an admin to access this page."} unless current_user.admin?
+    redirect_to restrooms_path, flash: {message: "You must log in as an admin to access that page."} unless logged_in? && current_user.admin?
   end
 
   def require_login

@@ -1,5 +1,6 @@
 class NeighborhoodsController < ApplicationController
     before_action :set_neighborhood, only: [:show, :edit, :update, :destroy]
+    before_action :require_admin, only: [:create, :edit, :update, :destroy]
 
     def index
         @neighborhoods = Neighborhood.all

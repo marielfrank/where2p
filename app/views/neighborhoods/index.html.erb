@@ -2,11 +2,10 @@
 <% @neighborhoods.each do |n| %>
     <p><%= link_to n.name, neighborhood_path(n) %></p>
 <% end %>
-<%# if current_user.admin? %>
+<% if current_user.admin? %>
     <h3>Add a new neighborhood</h3>
     <%= form_for @neighborhood do |f| %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+        <%= render partial: 'form', locals: {f: f} %>
         <%= f.submit 'Add neighborhood', class: 'btn cta' %>
     <% end %>
-<%# end %>
+<% end %>
