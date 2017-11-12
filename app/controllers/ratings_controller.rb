@@ -1,7 +1,9 @@
 class RatingsController < ApplicationController
+    before_action :set_restroom
+    before_action :require_login, only: [:create, :update, :destroy]
+
     def index
         if params[:restroom_id]
-            @restroom = set_restroom
             @rating = @restroom.ratings.build(user_id: current_user.id)
             @ratings = @restroom.ratings
         else
@@ -10,7 +12,6 @@ class RatingsController < ApplicationController
     end
 
     def create
-        @restroom = set_restroom
         @rating = @restroom.ratings.build(rating_params)
         if @rating && @rating.save
             redirect_to restroom_ratings_path(@restroom)
@@ -21,10 +22,13 @@ class RatingsController < ApplicationController
         end
     end
 
-    private
-    def set_restroom
-        Restroom.find(params[:restroom_id])
+    def update
     end
+
+    def destroy
+    end
+
+    private
 
     def rating_params
         params.require(:rating).permit(:restroom_id, :user_id, :value, :comment)

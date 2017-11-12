@@ -1,5 +1,7 @@
 class RestroomsController < ApplicationController
     before_action :set_restroom, only: [:show, :edit, :update, :destroy]
+    before_action :admin_only, only: [:edit, :update, :destroy]
+    before_action :require_login, only: [:new, :create]
 
     def index
         @restrooms = Restroom.all
@@ -38,10 +40,6 @@ class RestroomsController < ApplicationController
     end
 
     private
-
-    def set_restroom
-        @restroom = Restroom.find_by(id: params[:id])
-    end
 
     def restroom_params
         params.require(:restroom).permit(:name, :address, :neighborhood_id, tag_ids: [], tags_attributes: [:description])

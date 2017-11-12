@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
     before_action :set_user, only: [:edit, :update, :destroy]
-    authorize_resource
-    skip_authorize_resource :only => [:new, :create]
+    before_action :authorize_user, only: [:edit, :destroy]
 
     def new
         redirect_to restrooms_path if logged_in?
@@ -21,7 +20,6 @@ class UsersController < ApplicationController
     end
 
     def edit
-        # redirect_to restrooms_path, flash: {message: "You don't have permission to edit that profile."} if @user != current_user
     end
 
     def update
@@ -34,19 +32,19 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        # if @user == current_user
-            name = @user.name
-            User.delete(id: @user.id)
-            redirect_to root_path, flash: {message: "Your profile has been deleted, #{name}. Sorry to see you go!"}
-        # else
-        #     redirect_to restrooms_path, flash: {message: "You don't have permission to delete that profile."}
-        # end
+        name = @user.name
+        User.delete(id: @user.id)
+        redirect_to root_path, flash: {message: "Your profile has been deleted, #{name}. Sorry to see you go!"}
     end
 
     private
 
     def set_user
         @user = User.find_by(id: params[:id])
+    end
+
+    def authorize_user
+        redirect_to restrooms_path, flash: {message: "You don't have permission to make changes to another user's profile."} unless current_user.admin? || @user == current_user
     end
 
     def user_params
