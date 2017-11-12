@@ -41,6 +41,10 @@ class RestroomsController < ApplicationController
 
     private
 
+    def set_restroom
+        @restroom = Restroom.find(params[:id])
+    end
+
     def restroom_params
         params.require(:restroom).permit(:name, :address, :neighborhood_id, tag_ids: [], tags_attributes: [:description])
     end

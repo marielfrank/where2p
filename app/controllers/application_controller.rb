@@ -19,13 +19,9 @@ class ApplicationController < ActionController::Base
     redirect_to restrooms_path, flash: {message: "Please log in first ;)"} if !logged_in?    
   end
 
-  def set_restroom
-    @restroom = Restroom.find(params[:restroom_id])
-  end
-
   def flash_error(object)
     object.errors.full_messages.join(", ")
   end
 
-  helper_method :current_user
+  helper_method [:current_user, :logged_in?]
 end

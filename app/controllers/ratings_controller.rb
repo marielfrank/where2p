@@ -1,6 +1,6 @@
-class RatingsController < ApplicationController
+class RatingsController < RestroomsController
     before_action :set_restroom
-    before_action :require_login, only: [:create, :update, :destroy]
+    before_action :require_login
 
     def index
         if params[:restroom_id]
@@ -29,6 +29,10 @@ class RatingsController < ApplicationController
     end
 
     private
+
+    def set_restroom
+        @restroom = Restroom.find(params[:restroom_id])
+    end
 
     def rating_params
         params.require(:rating).permit(:restroom_id, :user_id, :value, :comment)
