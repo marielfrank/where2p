@@ -2,30 +2,29 @@
 <h3>Address: <%= @restroom.address %> in <%= @restroom.neighborhood.name %></h3>
 
 <% if logged_in? && current_user.admin? %>
-    <%= link_to 'Edit', edit_restroom_path(@restroom), class: 'btn ghost-cta' %>
-    <%= link_to 'Delete', restroom_path(@restroom), method: 'delete', class: 'btn ghost-cta' %>
+    <%= render partial: 'layouts/edit_and_delete', locals: {resource: @restroom, edit_link: edit_restroom_path(@restroom), resource_link: restroom_path(@restroom)} %>
 <% end %>
 <%= link_to "See other restrooms in #{@restroom.neighborhood.name}", neighborhood_path(@restroom.neighborhood), class: 'btn ghost-cta' %>
 
 <% if !@restroom.ratings.empty? %>
     <p><b>Average Rating: </b><%= pluralize(@restroom.average_rating, 'stars') %></p>
     <%= link_to 'View ratings', restroom_ratings_path(@restroom), class: 'btn cta' if logged_in? %>
-<% elsif logged_in? %>
-    <p>Be the first to rate this restroom!</p>
 <% else %>
-    <p>This restroom hasn't been rated yet</p>
+    <%= render 'no_ratings' %>
 <% end %>
 <%= link_to "Rate #{@restroom.name}", restroom_ratings_path(@restroom), class: 'btn cta' if logged_in?%>
 
-
-<% if @restroom.tags.empty? && logged_in? %>
-    <p>Be the first to add tags to this restroom!</p>
-<% else %>
-    <p><b>Tags: </b></p>
+<p><b>Tags: </b></p>
+<% if !@restroom.tags.empty? %>
     <% @restroom.tags.each do |tag| %>
         <p><%= link_to tag.description, tag_path(tag) %></p>
     <% end %>
     <% if logged_in? %><p><b>Add more tags:</b></p><% end %>
+    
+<% elsif logged_in? %>
+    <p>Be the first to add tags to this restroom!</p>
+<% else %>
+    <p>This restroom hasn't been tagged yet.</p>
 <% end %>
 <% if logged_in? %>
     <%= form_for @restroom do |f| %>

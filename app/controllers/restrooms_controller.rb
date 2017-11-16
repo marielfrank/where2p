@@ -1,7 +1,7 @@
 class RestroomsController < ApplicationController
     before_action :set_restroom, only: [:show, :edit, :update, :destroy]
-    before_action :admin_only, only: [:edit, :update, :destroy]
-    before_action :require_login, only: [:new, :create]
+    before_action :admin_only, only: [:edit, :destroy]
+    before_action :require_login, only: [:new, :create, :update]
 
     def index
         @restrooms = Restroom.all
