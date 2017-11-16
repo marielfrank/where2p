@@ -9,4 +9,8 @@ class User < ApplicationRecord
     def admin?
         self.admin
     end
+
+    def owner_or_admin?(resource)
+        admin? || resource.user == self
+    end
 end

@@ -1,0 +1,9 @@
+<h1>All users</h1>
+<% @users.each do |u| %>
+    <h3><%= u.name %> <%= link_to 'Edit Profile', edit_user_path(u), class: 'btn ghost-cta' %>
+    <%= link_to 'Delete User', user_path(u), method: 'delete', class: 'btn ghost-cta' %></h3>
+    <ul>
+        <li><strong>Email address:</strong> <%= u.email %></li>
+        <li><strong>Admin?:</strong> <%= u.admin? ? "Yes" : "No" %></li>
+    </ul>
+<% end %>

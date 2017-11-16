@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
-
     before_action :set_user, only: [:edit, :update, :destroy]
-    before_action :authorize_user, only: [:edit, :destroy]
+    before_action :admin_only, only: [:index]
+    before_action :require_login, only: [:edit, :destroy]
+
+    def index
+        @users = User.all
+    end
 
     def new
         redirect_to restrooms_path if logged_in?
@@ -20,6 +24,7 @@ class UsersController < ApplicationController
     end
 
     def edit
+        redirect_to restrooms_path, flash: {message: "You do not have permission to edit this user's profile."} unless current_user == @user || current_user.admin?
     end
 
     def update

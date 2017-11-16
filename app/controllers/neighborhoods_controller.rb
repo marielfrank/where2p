@@ -1,6 +1,6 @@
 class NeighborhoodsController < ApplicationController
     before_action :set_neighborhood, only: [:show, :edit, :update, :destroy]
-    before_action :require_admin, only: [:create, :edit, :update, :destroy]
+    before_action :admin_only, only: [:create, :edit, :update, :destroy]
 
     def index
         @neighborhoods = Neighborhood.all
@@ -33,9 +33,13 @@ class NeighborhoodsController < ApplicationController
     end
 
     def destroy
-        name = @neighborhood.name
-        @neighborhood.delete
-        redirect_to neighborhoods_path, flash: {message: "#{name} has been deleted."}
+        if @neighborhood.restrooms.empty?
+            name = @neighborhood.name
+            @neighborhood.delete
+            redirect_to neighborhoods_path, flash: {message: "#{name} has been deleted."}
+        else
+            redirect_to neighborhood_path(@neighborhood), flash: {message: "#{@neighborhood.name} cannot been deleted until you first remove its restrooms."}
+        end
     end
 
     private
