@@ -8,7 +8,7 @@
 
 <% if !@restroom.ratings.empty? %>
     <p><b>Average Rating: </b><%= pluralize(@restroom.average_rating, 'stars') %></p>
-    <%= link_to 'View ratings', restroom_ratings_path(@restroom), class: 'btn cta' if logged_in? %>
+    <%= link_to 'View ratings', restroom_ratings_path(@restroom), class: 'btn cta' %>
 <% else %>
     <%= render 'no_ratings' %>
 <% end %>

@@ -13,8 +13,10 @@
 <%= render 'no_ratings' %>
 <% end %>
 
-<h3>Add new rating for <%= @restroom.name %></h3>
-<%= form_for @rating, url: restroom_ratings_path do |f| %>
-    <%= render partial: 'form', locals: {f: f} %>
-    <%= f.submit 'Submit Rating', class: 'btn cta' %>
+<% if logged_in? %>
+    <h3>Add new rating for <%= @restroom.name %></h3>
+    <%= form_for @rating, url: restroom_ratings_path do |f| %>
+        <%= render partial: 'form', locals: {f: f} %>
+        <%= f.submit 'Submit Rating', class: 'btn cta' %>
+    <% end %>
 <% end %>

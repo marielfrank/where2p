@@ -1,11 +1,11 @@
 class RatingsController < RestroomsController
     before_action :set_rating, only: [:edit, :update, :destroy]
     before_action :set_restroom
-    before_action :require_login
+    before_action :require_login, except: [:index]
 
     def index
         if params[:restroom_id]
-            @rating = @restroom.ratings.build(user_id: current_user.id)
+            @rating = @restroom.ratings.build(user_id: current_user.id) if logged_in?
             @ratings = @restroom.ratings
         else
             @ratings = Rating.all
