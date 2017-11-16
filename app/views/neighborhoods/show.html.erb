@@ -12,5 +12,5 @@
 
 <% if logged_in? && current_user.admin? %>
     <%= link_to 'Edit', edit_neighborhood_path(@neighborhood), class: 'btn ghost-cta' %>
-    <%= button_to 'Delete', neighborhood_path(@neighborhood), method: 'delete', class: 'btn ghost-cta' %>
+    <%= link_to 'Delete', neighborhood_path(@neighborhood), method: 'delete', class: 'btn ghost-cta' %>
 <% end %>

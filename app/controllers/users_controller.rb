@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
     def destroy
         name = @user.name
-        User.delete(id: @user.id)
+        @user.delete
         redirect_to root_path, flash: {message: "Your profile has been deleted, #{name}. Sorry to see you go!"}
     end
 

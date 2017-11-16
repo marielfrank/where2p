@@ -1,22 +1,23 @@
 <h1>Ratings for <%= @restroom.name %></h1>
-<% if @ratings.empty? %>
-    Be the first to rate this restroom!
-<% else %>
+<% if !@ratings.empty? %>
     <% @ratings.each do |rat| %>
-        <% if !!rat.id %>
+        <% if rat.id %>
             <h4><strong><%= pluralize(rat.value, 'star') %></strong></h4>
-            <p><%= rat.comment %></p>
-            ~ <%= rat.user.name %><br>
+            <p>"<%= rat.comment %>" ~ <%= rat.user.name %></p>
+            <% if (logged_in? && rat.user == current_user) || current_user.admin? %>
+                <%= link_to 'Edit rating', edit_restroom_rating_path(@restroom, rat), class: 'btn ghost-cta' %>
+                <%= link_to 'Delete rating', restroom_rating_path(@restroom, rat), method: 'delete', class: 'btn ghost-cta' %>
+            <% end %>
         <% end %>
     <% end %>
+<% elsif logged_in? %>
+    <p>Be the first to rate this restroom!</p>
+<% else %>
+    <p>This restroom hasn't been rated yet.</p>
 <% end %>
 
 <h3>Add new rating for <%= @restroom.name %></h3>
 <%= form_for @rating, url: restroom_ratings_path do |f| %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.label "How many stars would you rate this restroom?" %><br>
-    <%= f.number_field :value, in: 1..5 %><br>
-    <%= f.label 'Add a comment' %><br>
-    <%= f.text_area :comment %><br>
+    <%= render partial: 'form', locals: {f: f} %>
     <%= f.submit 'Submit Rating', class: 'btn cta' %>
 <% end %>
