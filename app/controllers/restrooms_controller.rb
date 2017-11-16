@@ -29,7 +29,7 @@ class RestroomsController < ApplicationController
 
     def update
         if @restroom.update(restroom_params)
-            redirect_to restroom_path(@restroom)
+            redirect_to restroom_path(@restroom), flash: {message: "#{@restroom.name} has been updated."}
         else
             flash[:message] = flash_error(@restroom)
             render 'restrooms/edit'
@@ -37,6 +37,9 @@ class RestroomsController < ApplicationController
     end
 
     def destroy
+        name = @restroom.name
+        @restroom.delete
+        redirect_to restrooms_path, flash: {message: "#{name} has been deleted."}
     end
 
     private

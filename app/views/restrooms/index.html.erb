@@ -3,5 +3,5 @@
     <p><strong><%= link_to rr.name, restroom_path(rr) %></strong> &mdash; <%= rr.neighborhood.name %></p>
 <% end %><br>
 
-<%= link_to "Add a restroom you visited", new_restroom_path, class: 'btn cta' %>
+<%= link_to "Add a restroom you visited", new_restroom_path, class: 'btn cta' if logged_in? %>
 <%= link_to "Find restrooms by neighborhood", neighborhoods_path, class: 'btn cta' %>

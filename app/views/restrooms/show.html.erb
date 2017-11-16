@@ -1,24 +1,35 @@
 <h1><%= @restroom.name %></h1>
 <h3>Address: <%= @restroom.address %> in <%= @restroom.neighborhood.name %></h3>
-<% if @restroom.ratings.empty? %>
+
+<% if logged_in? && current_user.admin? %>
+    <%= link_to 'Edit', edit_restroom_path(@restroom), class: 'btn ghost-cta' %>
+    <%= link_to 'Delete', restroom_path(@restroom), method: 'delete', class: 'btn ghost-cta' %>
+<% end %>
+<%= link_to "See other restrooms in #{@restroom.neighborhood.name}", neighborhood_path(@restroom.neighborhood), class: 'btn ghost-cta' %>
+
+<% if !@restroom.ratings.empty? %>
+    <p><b>Average Rating: </b><%= pluralize(@restroom.average_rating, 'stars') %></p>
+    <%= link_to 'View ratings', restroom_ratings_path(@restroom), class: 'btn cta' if logged_in? %>
+<% elsif logged_in? %>
     <p>Be the first to rate this restroom!</p>
 <% else %>
-    <p><b>Average Rating: </b><%= pluralize(@restroom.average_rating, 'stars') %></p>
-    <%= link_to 'View ratings', restroom_ratings_path(@restroom), class: 'btn cta' %>
+    <p>This restroom hasn't been rated yet</p>
 <% end %>
-<%= link_to "Rate #{@restroom.name}", restroom_ratings_path(@restroom), class: 'btn cta' %>
+<%= link_to "Rate #{@restroom.name}", restroom_ratings_path(@restroom), class: 'btn cta' if logged_in?%>
 
 
-<% if @restroom.tags.empty? %>
+<% if @restroom.tags.empty? && logged_in? %>
     <p>Be the first to add tags to this restroom!</p>
 <% else %>
     <p><b>Tags: </b></p>
     <% @restroom.tags.each do |tag| %>
         <p><%= link_to tag.description, tag_path(tag) %></p>
     <% end %>
-    <p>Add more tags:</p>
+    <% if logged_in? %><p><b>Add more tags:</b></p><% end %>
 <% end %>
-<%= form_for @restroom do |f| %>
-    <%= render partial: 'add_tags', locals: {restroom: @restroom, f: f} %>
-    <%= f.submit "Add tags to #{@restroom.name}" , class: 'btn cta' %>
+<% if logged_in? %>
+    <%= form_for @restroom do |f| %>
+        <%= render partial: 'add_tags', locals: {restroom: @restroom, f: f} %>
+        <%= f.submit "Add tags to #{@restroom.name}" , class: 'btn cta' %>
+    <% end %>
 <% end %>

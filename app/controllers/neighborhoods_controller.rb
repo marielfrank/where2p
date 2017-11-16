@@ -33,7 +33,9 @@ class NeighborhoodsController < ApplicationController
     end
 
     def destroy
+        name = @neighborhood.name
         @neighborhood.delete
+        redirect_to neighborhoods_path, flash: {message: "#{name} has been deleted."}
     end
 
     private
