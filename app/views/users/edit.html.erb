@@ -1,5 +1,13 @@
-<h1>Update <%= current_user == @user ? "your" : "#{@user.name}'s'" %> profile</h1>
-<%= form_for @user do |f| %>
-    <%= render partial: 'form', locals: {f: f} %>
-    <%= f.submit 'Update Profile', class: 'btn cta' %>
-<% end %>
+<div class="row">
+    <div class="col-sm-9">
+        <h1>Update <%= current_user == @user ? "your" : "#{@user.name}'s'" %> profile</h1>
+        <%= form_for @user do |f| %>
+            <%= render partial: 'form', locals: {f: f} %>
+            <%= f.submit 'Update Profile', class: 'btn cta' %>
+        <% end %>
+    </div>
+    <div class="col-sm-3">
+        <%= link_to "Back to #{@user.name}", user_path(@user), class: 'btn ghost-cta' %>
+        <%= render 'layouts/right_nav_links' %>
+    </div>
+</div>

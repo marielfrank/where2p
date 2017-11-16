@@ -1,10 +1,18 @@
-<h1>Log In</h1>
-<%= form_for @user, url: sessions_path do |f| %>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %><br>
-    <%= f.label :password %><br>
-    <%= f.password_field :password %><br>
-    <%= f.submit 'Log In', class: 'btn cta' %>
-<% end %>
+<div class="row">
+    <div class="col-sm-8">
+        <h1>Log In</h1>
+        <%= form_for @user, url: sessions_path do |f| %>
+            <%= f.label :email %><br>
+            <%= f.text_field :email %><br>
+            <%= f.label :password %><br>
+            <%= f.password_field :password %><br>
+            <%= f.submit 'Log In', class: 'btn cta' %>
+        <% end %>
+        <%= render 'sessions/oauth-link' %>
+    </div>
+    <div class="col-sm-4">
+        <h3>Don't have an account yet?</h3>
+        <%= link_to "Sign up", signup_path, class: 'btn ghost-cta' %>
+    </div>
+</div>
 
-<%= render 'sessions/oauth-link' %>

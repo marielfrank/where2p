@@ -1,5 +1,13 @@
-    <h3>Change <%= @neighborhood.name %> name</h3>
-    <%= form_for @neighborhood do |f| %>
-        <%= render partial: 'form', locals: {f: f} %>
-        <%= f.submit 'Edit neighborhood', class: 'btn cta' %>
-    <% end %>
+<div class="row">
+    <div class="col-sm-9">
+        <h3>Change <%= @neighborhood.name %> name</h3>
+        <%= form_for @neighborhood do |f| %>
+            <%= render partial: 'form', locals: {f: f} %>
+            <%= f.submit 'Update neighborhood', class: 'btn cta' %>
+        <% end %>
+    </div>
+    <div class="col-sm-3">
+        <%= link_to "Back to #{@neighborhood.name}", neighborhood_path(@neighborhood), class: 'btn ghost-cta' %>
+        <%= render 'layouts/right_nav_links' %>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-sm-9">
+        <h1>Find restrooms by tag</h1>
+        <% @tags.each do |tag| %>
+            <p><strong><%= link_to tag.description, tag_path(tag) %></strong></p>
+        <% end %>
+    </div>
+    <div class="col-sm-3">
+        <%= render 'restrooms/add_restroom_btn' %>
+        <%= render 'layouts/right_nav_links' %>
+    </div>
+</div>

@@ -1,5 +1,13 @@
-<h1>Update Restroom</h1>
-<%= form_for @restroom do |f| %>
-    <%= render partial: 'form', locals: {restroom: @restroom, f: f} %>
-    <%= f.submit "Edit restroom", class: 'btn cta' %>
-<% end %>
+<div class="row">
+    <div class="col-sm-9">
+        <h1>Update Restroom</h1>
+        <%= form_for @restroom do |f| %>
+            <%= render partial: 'form', locals: {restroom: @restroom, f: f} %>
+            <%= f.submit "Edit restroom", class: 'btn cta' %>
+        <% end %>
+    </div>
+    <div class="col-sm-3">
+        <%= link_to "Back to #{@restroom.name}", restroom_path(@restroom), class: 'btn ghost-cta' %>
+        <%= render 'layouts/right_nav_links' %>
+    </div>
+</div>

@@ -1,5 +1,13 @@
-<h2><%= "Update #{@rating.user.name}'s rating of #{@rating.restroom.name}" %></h2>
-<%= form_for @rating, url: restroom_rating_path(@restroom, @rating) do |f| %>
-    <%= render partial: 'form', locals: {f: f} %>
-    <%= f.submit 'Update Rating', class: 'btn cta' %>
-<% end %>
+<div class="row">
+    <div class="col-sm-9">
+        <h2><%= "Update #{@rating.user.name}'s rating of #{@restroom.name}" %></h2>
+        <%= form_for @rating, url: restroom_rating_path(@restroom, @rating) do |f| %>
+            <%= render partial: 'form', locals: {f: f} %>
+            <%= f.submit 'Update Rating', class: 'btn cta' %>
+        <% end %>
+    </div>
+    <div class="col-sm-3">
+        <%= link_to "Back to ratings", restroom_ratings_path(@restroom), class: 'btn ghost-cta' %>
+        <%= render 'layouts/right_nav_links' %>
+    </div>
+</div>

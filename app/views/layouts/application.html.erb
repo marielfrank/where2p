@@ -34,8 +34,16 @@
       </div>
     </nav>
     <div class="container">
-      <%= content_tag :div, flash[:message], id: "flash_message" if flash[:message] %>
+      <%= content_tag :div, "/// #{flash[:message]}", id: "flash_message" if flash[:message] %>
       <%= yield %>
     </div>
+
+    <footer>
+      <div class="container-fluid">
+        <div class="foot-note text-right">
+          <a href="https://github.com/marielfrank">Made by Mariel &#128701;</a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

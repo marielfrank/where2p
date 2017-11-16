@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   end
   
   resources :neighborhoods, :users
-  resources :tags, only: [:new, :create, :show, :destroy]
+  resources :tags, only: [:index, :show, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
 end

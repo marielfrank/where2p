@@ -1,9 +1,17 @@
-<h1>Restrooms tagged as <%= @tag.description %></h1>
-<% if @tag.restrooms.empty? %>
-    <p>Be the first to add restrooms with this tag!</p>
-    <p><%= link_to "Add a new restroom", new_restroom_path, class: 'btn cta' %></p>
-<% else %>
-    <% @tag.restrooms.each do |restroom| %>
-        <p><%= link_to restroom.name, restroom_path(restroom) %></p>
-    <% end %>
-<% end %>
+<div class="row">
+    <div class="col-sm-9">
+        <h1>Restrooms tagged as <%= @tag.description %></h1>
+        <% if @tag.restrooms.empty? %>
+            <p>Be the first to add restrooms with this tag!</p>
+            <p><%= link_to "Add a new restroom", new_restroom_path, class: 'btn cta' %></p>
+        <% else %>
+            <% @tag.restrooms.each do |restroom| %>
+                <p><%= link_to restroom.name, restroom_path(restroom) %></p>
+            <% end %>
+        <% end %>
+    </div>
+    <div class="col-sm-3">
+        <%= render 'restrooms/add_restroom_btn' %>
+        <%= render 'layouts/right_nav_links' %><br>
+    </div>
+</div>

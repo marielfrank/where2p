@@ -1,11 +1,19 @@
-<h1>Find restrooms by neighborhood</h1>
-<% @neighborhoods.each do |n| %>
-    <p><%= link_to n.name, neighborhood_path(n) %></p>
-<% end %>
-<% if logged_in? && current_user.admin? %>
-    <h3>Add a new neighborhood</h3>
-    <%= form_for @neighborhood do |f| %>
-        <%= render partial: 'form', locals: {f: f} %>
-        <%= f.submit 'Add neighborhood', class: 'btn cta' %>
-    <% end %>
-<% end %>
+<div class="row">
+    <div class="col-sm-9">
+        <h1>Find restrooms by neighborhood</h1>
+        <% @neighborhoods.each do |n| %>
+            <p><%= link_to n.name, neighborhood_path(n) %></p>
+        <% end %>
+        <% if logged_in_as_admin? %>
+            <h3>Add a new neighborhood</h3>
+            <%= form_for @neighborhood do |f| %>
+                <%= render partial: 'form', locals: {f: f} %>
+                <%= f.submit 'Add neighborhood', class: 'btn cta' %>
+            <% end %>
+        <% end %>
+    </div>
+    <div class="col-sm-3">
+        <%= render 'restrooms/add_restroom_btn' %>
+        <%= render 'layouts/right_nav_links' %>
+    </div>
+</div>
