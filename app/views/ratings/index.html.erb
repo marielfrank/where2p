@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-9">
-        <h1>Ratings for <%= link_to @restroom.name, restroom_path(@restroom) %></h1>
+        <h1><%= pluralize(@restroom.ratings_quantity, "rating") %> for <%= link_to @restroom.name, restroom_path(@restroom) %></h1>
         <% if !@ratings.empty? %>
             <% @ratings.each do |rat| %>
                 <% if rat.id %>

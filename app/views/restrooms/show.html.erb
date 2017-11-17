@@ -8,12 +8,13 @@
         <% end %>
         
 
-        <% if !@restroom.ratings.empty? %>
+        <% if @restroom.ratings_quantity > 0 %>
             <p><b>Average Rating: </b><%= pluralize(@restroom.average_rating, 'stars') %></p>
             <%= link_to 'View ratings', restroom_ratings_path(@restroom), class: 'btn cta' %>
         <% else %>
             <%= render 'no_ratings' %>
-        <% end %>
+        <% end %><br>
+        Been to this restroom?<br>
         <%= link_to "Rate #{@restroom.name}", restroom_ratings_path(@restroom), class: 'btn cta' if logged_in?%>
 
         <p><b>Tags: </b></p>

@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-    before_action :admin_only, only: [:delete]
+    before_action :require_admin, only: [:delete]
     before_action :set_tag, only: [:show, :delete]
     
     def index

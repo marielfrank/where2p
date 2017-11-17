@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
 
     def new
         redirect_to restrooms_path if logged_in?
-        @user = User.new
     end
 
     def create
@@ -13,16 +12,14 @@ class SessionsController < ApplicationController
                 u.password ||= SecureRandom.base58
             end
             log_user_in
-        elsif User.find_by(email: params[:user][:email])
+        else
             @user = User.find_by(email: params[:user][:email])
-            if @user.authenticate(params[:user][:password])
+            if @user && @user.authenticate(params[:user][:password])
                 log_user_in
             else
-                flash[:message] = flash_error(@user)
+                flash[:message] = "Oops! Please provide a valid email address and password."
                 render 'sessions/new'
             end
-        else
-            redirect_to login_path, flash: {message: "We weren't able to find a user by that email address..."}
         end
     end
 
@@ -35,10 +32,6 @@ class SessionsController < ApplicationController
 
     def set_session
         session.find_by(id: params[:id])
-    end
-
-    def session_params
-        params.require(:session).permit(:name, :password, :email)
     end
 
     def auth
