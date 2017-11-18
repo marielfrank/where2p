@@ -16,7 +16,11 @@ class Restroom < ApplicationRecord
     accepts_nested_attributes_for :tags, reject_if: proc { |attributes| attributes['description'].blank? || Tag.find_by(description: attributes['description'])}, :allow_destroy => true
     
     # scope method for top 5 restrooms based on average rating
-    scope :top_5, -> { order(average_rating: :desc).limit(5) }
+    def self.top_5
+        self.all.sort_by do |rest|
+            rest.ratings_quantity > 0 ? rest.average_rating : 0
+        end.reverse.first(5)
+    end
 
     # method to get restroom's average rating
     def average_rating

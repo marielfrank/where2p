@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-sm-9">
+        <h1>where2p top 5</h1>
+        <% @restrooms.each do |rr| %>
+            <h4><strong><%= link_to rr.name, restroom_path(rr) %></strong> &mdash; <%= rr.neighborhood.name %></h4>
+            <p>Average rating: <%= rr.ratings_quantity > 0 ? rr.average_rating : "This restroom has not been rated yet" %></p>
+        <% end %><br>
+    </div>
+    <div class="col-sm-3">
+        <%= render 'restrooms/add_restroom_btn' %>
+        <%= render 'layouts/right_nav_links' %><br>
+    </div>
+</div>

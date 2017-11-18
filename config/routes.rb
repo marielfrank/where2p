@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy'
   get '/auth/google_oauth2/callback' => 'sessions#create'
 
+  get '/restrooms/top_five' => 'restrooms#top_five'
+
   resources :restrooms do
     resources :ratings
   end

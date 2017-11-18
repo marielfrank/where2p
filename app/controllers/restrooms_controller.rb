@@ -7,6 +7,10 @@ class RestroomsController < ApplicationController
         @restrooms = Restroom.all
     end
 
+    def top_five
+        @restrooms = Restroom.top_5
+    end
+
     def new
         @restroom = Restroom.new
     end
