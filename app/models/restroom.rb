@@ -13,7 +13,13 @@ class Restroom < ApplicationRecord
     has_many :tags, :through => :restroom_tags
 
     # allow restroom to build tag if tag description is present & unique
-    accepts_nested_attributes_for :tags, reject_if: proc { |attributes| attributes['description'].blank? || Tag.find_by(description: attributes['description'])}, :allow_destroy => true
+
+    def tags_attributes=(tag_attributes)
+        tag_attributes.values.each do |attr|
+            tag = Tag.find_or_create_by(attr)
+            self.restroom_tags.build(tag: tag) if !self.tags.include?(tag) && !!tag.description
+        end
+    end
     
     # scope method for top 5 restrooms based on average rating
     def self.top_5
@@ -39,4 +45,5 @@ class Restroom < ApplicationRecord
     def ratings_quantity
         self.ratings.size
     end
+
 end
