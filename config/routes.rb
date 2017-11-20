@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   get '/restrooms/top_five' => 'restrooms#top_five'
 
   resources :restrooms do
-    resources :ratings
+    resources :ratings, except: [:new, :show]
   end
   
-  resources :neighborhoods, :users
+  resources :neighborhoods, except: [:new, :show]
+  resources :users, except: [:show]
   resources :tags, only: [:index, :show, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
 end

@@ -1,6 +1,6 @@
 class NeighborhoodsController < ApplicationController
     # set variables and require admin access before certain actions
-    before_action :set_neighborhood, only: [:show, :edit, :update, :destroy]
+    before_action :set_neighborhood, only: [:edit, :update, :destroy]
     before_action :require_admin, only: [:create, :edit, :update, :destroy]
 
     # load neighborhoods as instance variable & build new neighborhood for 'new' form
