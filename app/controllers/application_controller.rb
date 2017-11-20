@@ -28,6 +28,11 @@ class ApplicationController < ActionController::Base
     object.errors.full_messages.join(", ")
   end
 
+  def log_user_in
+    session[:user_id] = @user.id
+    redirect_to restrooms_path, flash: {message: "Welcome, #{@user.name}!"}
+  end
+
   # allow current_user and logged_in? to be used in views
   helper_method [:current_user, :logged_in?]
 end

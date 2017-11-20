@@ -3,7 +3,7 @@ class NeighborhoodsController < ApplicationController
     before_action :set_neighborhood, only: [:show, :edit, :update, :destroy]
     before_action :require_admin, only: [:create, :edit, :update, :destroy]
 
-    # load neighborhoods as instance variable & create new neighborhood for 'new' form
+    # load neighborhoods as instance variable & build new neighborhood for 'new' form
     def index
         @neighborhoods = Neighborhood.all
         @neighborhood = Neighborhood.new
@@ -31,7 +31,7 @@ class NeighborhoodsController < ApplicationController
     def update
         # attempt to update neighborhood using strong params
         if @neighborhood.update(neighborhood_params)
-            # redirect with success message if udpate is successful
+            # redirect with success message
             redirect_to neighborhood_path(@neighborhood), flash: {message: "#{@neighborhood.name} has been updated."}
         else
             # flash errors with 'fields_with_errors' highlighting fields in question
@@ -54,11 +54,12 @@ class NeighborhoodsController < ApplicationController
     end
 
     private
-
+    # set neighborhood variable based on id in params
     def set_neighborhood
         @neighborhood = Neighborhood.find_by(id: params[:id])
     end
 
+    # use strong params
     def neighborhood_params
         params.require(:neighborhood).permit(:name)
     end

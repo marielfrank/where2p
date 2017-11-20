@@ -35,7 +35,11 @@
     </nav>
     <div class="container">
       <%= content_tag :div, "/// #{flash[:message]}", id: "flash_message" if flash[:message] %>
-      <%= yield %>
+      <div class="row">
+        <div class="col-sm-9">
+          <%= yield %>
+        </div>
+      </div>
     </div>
 
     <footer>

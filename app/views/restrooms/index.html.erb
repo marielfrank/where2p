@@ -1,12 +1,9 @@
-<div class="row">
-    <div class="col-sm-9">
-        <h1>where2p near you</h1>
-        <% @restrooms.each do |rr| %>
-            <p><strong><%= link_to rr.name, restroom_path(rr) %></strong> &mdash; <%= rr.neighborhood.name %></p>
-        <% end %><br>
-    </div>
-    <div class="col-sm-3">
-        <%= render 'restrooms/add_restroom_btn' %>
-        <%= render 'layouts/right_nav_links' %><br>
-    </div>
-</div>
+<h1>where2p near you</h1>
+<% @restrooms.each do |rr| %>
+    <p><strong><%= link_to rr.name, restroom_path(rr) %></strong> &mdash; <%= rr.neighborhood.name %></p>
+<% end %><br>
+
+<%= render 'layouts/close_main_open_nav' %>
+
+<%= render 'restrooms/add_restroom_btn' %>
+<%= render 'layouts/right_nav_links' %>

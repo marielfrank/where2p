@@ -13,7 +13,6 @@ class Restroom < ApplicationRecord
     has_many :tags, :through => :restroom_tags
 
     # allow restroom to build tag if tag description is present & unique
-
     def tags_attributes=(tag_attributes)
         tag_attributes.values.each do |attr|
             tag = Tag.find_or_create_by(attr)
@@ -28,9 +27,9 @@ class Restroom < ApplicationRecord
         end.reverse.first(5)
     end
 
-    # method to get restroom's average rating
+    # get restroom's average rating
     def average_rating
-        ratings_total/(ratings_quantity)
+        ratings_total/(ratings_quantity).to_f
     end
 
     # average rating helper
@@ -41,9 +40,9 @@ class Restroom < ApplicationRecord
         end
     end
 
-    # average rating helper
+    # average rating helper & used in ratings#index view
     def ratings_quantity
-        self.ratings.size
+        self.ratings.any? {|rat| rat.id == nil } ? self.ratings.size - 1 : self.ratings.size
     end
 
 end

@@ -2,6 +2,7 @@
 <%= link_to "Restrooms by tag", tags_path, class: 'btn ghost-cta' %>
 <%= link_to "All restrooms", restrooms_path, class: 'btn ghost-cta' %>
 <% if logged_in_as_admin? %>
+    <h4>Admin Panel</h4>
     <%= link_to "Add neighborhood", new_neighborhood_path, class: 'btn cta' %>
     <%= link_to "View/update users", users_path, class: 'btn ghost-cta' %>
 <% end %>

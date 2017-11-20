@@ -1,19 +1,17 @@
-<div class="row">
-    <div class="col-sm-9">
-        <h1>Find restrooms by neighborhood</h1>
-        <% @neighborhoods.each do |n| %>
-            <p><%= link_to n.name, neighborhood_path(n) %></p>
-        <% end %>
-        <% if logged_in_as_admin? %>
-            <h3>Add a new neighborhood</h3>
-            <%= form_for @neighborhood do |f| %>
-                <%= render partial: 'form', locals: {f: f} %>
-                <%= f.submit 'Add neighborhood', class: 'btn cta' %>
-            <% end %>
-        <% end %>
-    </div>
-    <div class="col-sm-3">
-        <%= render 'restrooms/add_restroom_btn' %>
-        <%= render 'layouts/right_nav_links' %>
-    </div>
-</div>
+<h1>Find restrooms by neighborhood</h1>
+<% @neighborhoods.each do |n| %>
+    <p><%= link_to n.name, neighborhood_path(n) %></p>
+    <%= render partial: 'layouts/edit_and_delete', locals: {resource: @neighborhood, edit_link: edit_neighborhood_path(@neighborhood), resource_link: neighborhood_path(@neighborhood)} if logged_in_as_admin? %>
+<% end %>
+<% if logged_in_as_admin? %>
+    <h3>Add a new neighborhood</h3>
+    <%= form_for @neighborhood do |f| %>
+        <%= render partial: 'form', locals: {f: f} %>
+        <%= f.submit 'Add neighborhood', class: 'btn cta' %>
+    <% end %>
+<% end %>
+
+<%= render 'layouts/close_main_open_nav' %>
+
+<%= render 'restrooms/add_restroom_btn' %>
+<%= render 'layouts/right_nav_links' %>

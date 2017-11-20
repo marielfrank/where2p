@@ -1,29 +1,26 @@
-<div class="row">
-    <div class="col-sm-9">
-        <h1><%= pluralize(@restroom.ratings_quantity, "rating") %> for <%= link_to @restroom.name, restroom_path(@restroom) %></h1>
-        <% if !@ratings.empty? %>
-            <% @ratings.each do |rat| %>
-                <% if rat.id %>
-                    <h4><strong><%= pluralize(rat.value, 'star') %></strong></h4>
-                    <p>"<%= rat.comment %>" ~ <%= rat.user.name %></p>
-                    <% if logged_in? && current_user.owner_or_admin?(rat) %>
-                        <%= render partial: 'layouts/edit_and_delete', locals: {resource: rat, edit_link: edit_restroom_rating_path(@restroom, rat), resource_link: restroom_rating_path(@restroom, rat)} %>
-                    <% end %>
-                <% end %>
+<h1><%= pluralize(@restroom.ratings_quantity, "rating") %> for <%= link_to @restroom.name, restroom_path(@restroom) %></h1>
+<% if !@ratings.empty? %>
+    <% @ratings.each do |rat| %>
+        <% if rat.id %>
+            <h4><strong><%= pluralize(rat.value, 'star') %></strong></h4>
+            <p>"<%= rat.comment %>" ~ <%= rat.user.name %></p>
+            <% if logged_in? && current_user.owner_or_admin?(rat) %>
+                <%= render partial: 'layouts/edit_and_delete', locals: {resource: rat, edit_link: edit_restroom_rating_path(@restroom, rat), resource_link: restroom_rating_path(@restroom, rat)} %>
             <% end %>
-        <% else %>
-        <%= render 'no_ratings' %>
         <% end %>
+    <% end %>
+<% else %>
+    <%= render 'no_ratings' %>
+<% end %>
 
-        <% if logged_in? %>
-            <h3>Add new rating for <%= @restroom.name %></h3>
-            <%= form_for @rating, url: restroom_ratings_path do |f| %>
-                <%= render partial: 'form', locals: {f: f} %>
-                <%= f.submit 'Submit Rating', class: 'btn cta' %>
-            <% end %>
-        <% end %>
-    </div>
-    <div class="col-sm-3">
-        <%= render 'layouts/right_nav_links' %>
-    </div>
-</div>
+<% if logged_in? %>
+    <h3>Add new rating for <%= @restroom.name %></h3>
+    <%= form_for @rating, url: restroom_ratings_path do |f| %>
+        <%= render partial: 'form', locals: {f: f} %>
+        <%= f.submit 'Submit Rating', class: 'btn cta' %>
+    <% end %>
+<% end %>
+
+<%= render 'layouts/close_main_open_nav' %>
+
+<%= render 'layouts/right_nav_links' %>
