@@ -1,7 +1,7 @@
 <h1>Find restrooms by neighborhood</h1>
 <% @neighborhoods.each do |n| %>
-    <p><%= link_to n.name, neighborhood_path(n) %></p>
-    <%= render partial: 'layouts/edit_and_delete', locals: {resource: @neighborhood, edit_link: edit_neighborhood_path(@neighborhood), resource_link: neighborhood_path(@neighborhood)} if logged_in_as_admin? %>
+    <h3><%= link_to n.name, neighborhood_path(n) %></h3>
+    <%= render partial: 'layouts/edit_and_delete', locals: {resource: n, edit_link: edit_neighborhood_path(n), resource_link: neighborhood_path(n)} if logged_in_as_admin? %>
 <% end %>
 <% if logged_in_as_admin? %>
     <h3>Add a new neighborhood</h3>
