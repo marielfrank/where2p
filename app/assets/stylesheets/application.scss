@@ -57,7 +57,7 @@ a:hover {
     padding: 10px 20px;
 }
 
-.field_with_errors input {
+.field_with_errors input, .field_with_errors select {
     border: 2px solid #d85454;
 }
 

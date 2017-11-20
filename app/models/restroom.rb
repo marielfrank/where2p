@@ -16,7 +16,12 @@ class Restroom < ApplicationRecord
     def tags_attributes=(tag_attributes)
         tag_attributes.values.each do |attr|
             tag = Tag.find_or_create_by(attr)
-            self.restroom_tags.build(tag: tag) if !self.tags.include?(tag) && !!tag.description
+            if !self.tags.include?(tag) && !tag.description.empty?
+                self.restroom_tags.build(tag: tag)
+            else
+                self.errors[:tags] << "cannot be blank or duplicate"
+                nil
+            end
         end
     end
     
