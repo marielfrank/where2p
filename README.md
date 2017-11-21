@@ -18,4 +18,4 @@ Once you have Ruby 2.3.1 and Rails 5.1.4 installed,
 A few things that are in the works:
 * Integrating Google Maps functionality
 * Collapsing the right-hand nav for a cleaner interface
-* Add more fun imagery
+* Adding more fun imagery
