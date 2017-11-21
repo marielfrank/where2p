@@ -6,7 +6,7 @@ An app to help you find the closest public restroom.
 
 This app requires Ruby 2.3.1 and Rails 5.1.4.
 
-Once you have Ruby 2.3.0 installed,
+Once you have Ruby 2.3.1 and Rails 5.1.4 installed,
 
  * `git clone https://github.com/marielfrank/where2p.git`
  * `cd where2p`
