@@ -1,9 +1,8 @@
 # where2p
-====================
 
 An app to help you find the closest public restroom.
 
-##Getting started
+## Getting started
 
 This app requires Ruby 2.3.1 and Rails 5.1.4.
 
@@ -14,7 +13,7 @@ Once you have Ruby 2.3.0 installed,
     `bundle install`
     `rails s`
 
-##Road Map
+## Road Map
 
 A few things that are in the works:
     -Integrating Google Maps functionality
