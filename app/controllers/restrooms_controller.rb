@@ -1,7 +1,7 @@
 class RestroomsController < ApplicationController
     # set variables and require login access before certain actions
     before_action :set_restroom, only: [:show, :edit, :update, :destroy]
-    before_action :require_login, except: [:index, :show]
+    before_action :require_login, except: [:index, :show, :top_five]
 
     # load restrooms as instance variable
     def index

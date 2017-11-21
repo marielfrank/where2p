@@ -34,7 +34,7 @@ class Restroom < ApplicationRecord
 
     # get restroom's average rating
     def average_rating
-        ratings_total/(ratings_quantity).to_f
+        (ratings_total/ratings_quantity.to_f).round(1)
     end
 
     # average rating helper
