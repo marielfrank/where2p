@@ -1,14 +1,9 @@
 <h1>Find restrooms by neighborhood</h1>
-<% @neighborhoods.each do |n| %>
-    <h3><%= link_to n.name, neighborhood_path(n) %></h3>
-    <%= render partial: 'layouts/edit_and_delete', locals: {resource: n, edit_link: edit_neighborhood_path(n), resource_link: neighborhood_path(n)} if logged_in_as_admin? %>
-<% end %>
+<%= render partial: 'neighborhoods/list_neighborhoods', locals: {neighborhoods: @neighborhoods} %>
 <% if logged_in_as_admin? %>
     <h3>Add a new neighborhood</h3>
-    <%= form_for @neighborhood do |f| %>
-        <%= render partial: 'form', locals: {f: f} %>
-        <%= f.submit 'Add neighborhood', class: 'btn cta' %>
-    <% end %>
+
+    <%= render partial: 'form', locals: {neighborhood: @neighborhood, submit_text: 'Add neighborhood'} %>
 <% end %>
 
 <%= render 'layouts/close_main_open_nav' %>

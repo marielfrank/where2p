@@ -1,2 +1,5 @@
-<%= f.label :name %>
-<%= f.text_field :name %>
+<%= form_for neighborhood do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.submit "#{submit_text}", class: 'btn cta' %>
+<% end %>

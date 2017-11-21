@@ -1,8 +1,6 @@
 <h1>Sign Up</h1>
-<%= form_for @user do |f| %>
-    <%= render partial: 'form', locals: {f: f} %>
-    <%= f.submit 'Sign Up', class: 'btn cta' %>
-<% end %>
+<%= render partial: 'form', locals: {user: @user, submit_text: "Sign Up"} %>
+
 <%= render 'sessions/oauth-link' %>
 
 <%= render 'layouts/close_main_open_nav' %>

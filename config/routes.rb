@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :ratings, except: [:new, :show]
   end
   
-  resources :neighborhoods, except: [:new, :show]
+  resources :neighborhoods, except: [:new]
   resources :users, except: [:show]
   resources :tags, only: [:index, :show, :destroy]
   resources :sessions, only: [:new, :create, :destroy]

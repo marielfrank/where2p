@@ -65,6 +65,6 @@ class RestroomsController < ApplicationController
 
     # use strong params
     def restroom_params
-        params.require(:restroom).permit(:name, :address, :neighborhood_id, tag_ids: [], tags_attributes: [:description])
+        params.require(:restroom).permit(:name, :address, :neighborhood_id, tag_ids: [], tags_attributes: [:description], ratings_attributes: [:user_id, :value, :comment])
     end
 end

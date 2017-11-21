@@ -1,8 +1,5 @@
 <h1>Update <%= current_user == @user ? "your" : "#{@user.name}'s'" %> profile</h1>
-<%= form_for @user do |f| %>
-    <%= render partial: 'form', locals: {f: f} %>
-    <%= f.submit 'Update Profile', class: 'btn cta' %>
-<% end %>
+<%= render partial: 'form', locals: {user: @user, submit_text: "Update Profile"} %>
 
 <%= render 'layouts/close_main_open_nav' %>
 

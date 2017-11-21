@@ -1,8 +1,5 @@
 <h3>Change <%= @neighborhood.name %> name</h3>
-<%= form_for @neighborhood do |f| %>
-    <%= render partial: 'form', locals: {f: f} %>
-    <%= f.submit 'Update neighborhood', class: 'btn cta' %>
-<% end %>
+<%= render partial: 'form', locals: {neighborhood: @neighborhood, submit_text: 'Update neighborhood'} %>
 
 <%= render 'layouts/close_main_open_nav' %>
 
