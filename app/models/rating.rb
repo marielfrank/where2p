@@ -1,6 +1,6 @@
 class Rating < ApplicationRecord
-    # make sure value is present
-    validates :value, presence: true
+    # make sure stars is present
+    validates :stars, presence: true
 
     # add associations
     belongs_to :restroom

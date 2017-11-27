@@ -12,6 +12,14 @@ class Restroom < ApplicationRecord
     has_many :restroom_tags
     has_many :tags, :through => :restroom_tags
 
+    def ratings_attributes=(ratings_attributes)
+        ratings_attributes.values.each do |attr|
+            rating = Rating.new(attr)
+            byebug
+            self.ratings << rating if rating.stars
+        end
+    end
+
     # allow restroom to build tag if tag description is present & unique
     def tags_attributes=(tag_attributes)
         tag_attributes.values.each do |attr|
@@ -39,8 +47,8 @@ class Restroom < ApplicationRecord
 
     # average rating helper
     def ratings_total
-        vals = ratings.collect{ |rat| rat.value }
-        vals.inject do |sum, val|
+        stars = ratings.collect{ |rat| rat.stars }
+        stars.inject do |sum, val|
             sum + val
         end
     end

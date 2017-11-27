@@ -1,5 +1,4 @@
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.label "How many stars would you rate this restroom?" %><br>
-    <%= f.number_field :value, in: 1..5 %><br>
-    <%= f.label 'Comments:' %><br>
-    <%= f.text_area :comment %><br>
+<%= form_for rating, url: restroom_ratings_path do |f| %>
+    <%= render partial: 'ratings/form_fields', locals: {f: f} %>
+    <%= f.submit "#{submit_text}", class: 'btn cta' %>
+<% end %>

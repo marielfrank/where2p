@@ -1,8 +1,5 @@
 <h2><%= "Update #{@rating.user.name}'s rating of #{@restroom.name}" %></h2>
-<%= form_for @rating, url: restroom_rating_path(@restroom, @rating) do |f| %>
-    <%= render partial: 'form', locals: {f: f} %>
-    <%= f.submit 'Update Rating', class: 'btn cta' %>
-<% end %>
+<%= render partial: 'form', locals: {rating: @rating, submit_text: 'Edit rating'} %>
 
 <%= render 'layouts/close_main_open_nav' %>
 
