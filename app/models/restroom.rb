@@ -59,4 +59,9 @@ class Restroom < ApplicationRecord
         self.ratings.any? {|rat| rat.id == nil } ? self.ratings.size - 1 : self.ratings.size
     end
 
+    # set value of user for restroom in case of owner_or_admin method
+    def user
+        false
+    end
+
 end

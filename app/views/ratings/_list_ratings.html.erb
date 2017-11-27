@@ -2,8 +2,6 @@
     <% if rat.id %>
         <h4><strong><%= pluralize(rat.stars, 'star') %></strong></h4>
         <p>"<%= rat.comment %>" ~ <%= rat.user.name %></p>
-        <% if logged_in? && current_user.owner_or_admin?(rat) %>
-            <%= render partial: 'layouts/edit_and_delete', locals: {resource: rat, edit_link: edit_restroom_rating_path(@restroom, rat), resource_link: restroom_rating_path(@restroom, rat)} %>
-        <% end %>
+        <%= render partial: 'layouts/edit_and_delete', locals: {resource: rat, edit_link: edit_restroom_rating_path(@restroom, rat), resource_link: restroom_rating_path(@restroom, rat)} %>
     <% end %>
 <% end %>

@@ -75,6 +75,6 @@ class RatingsController < RestroomsController
 
     # use strong params
     def rating_params
-        params.require(:rating).permit(:restroom_id, :user_id, :value, :comment)
+        params.require(:rating).permit(:restroom_id, :user_id, :stars, :comment)
     end
 end

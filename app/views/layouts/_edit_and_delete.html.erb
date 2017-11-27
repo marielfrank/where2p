@@ -1,4 +1,4 @@
-<% if logged_in_as_admin? %>
+<% if logged_in_owner_or_admin?(resource) %>
     <%= link_to "Edit #{resource.class.name}", edit_link, class: 'btn ghost-cta' %>
     <%= link_to "Delete #{resource.class.name}", resource_link, method: 'delete', class: 'btn ghost-cta' %>
 <% end %>

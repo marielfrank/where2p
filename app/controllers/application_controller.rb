@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
     redirect_to restrooms_path, flash: {message: "Welcome, #{@user.name}!"}
   end
 
+  # switch language depending on whether asset belongs to current user or not
   def your_or_current
     current_user == @user ? "your" : "#{@user.name}'s"
   end

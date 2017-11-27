@@ -17,6 +17,6 @@ class User < ApplicationRecord
 
     # check if user is admin or owner of a resource
     def owner_or_admin?(resource)
-        admin? || resource.user == self
+        admin? || !!resource.user && resource.user == self
     end
 end

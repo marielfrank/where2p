@@ -39,7 +39,6 @@ class RestroomsController < ApplicationController
 
     def update
         # attempt to update restroom using strong params
-        # byebug
         if @restroom.update(restroom_params) && @restroom.errors.empty?
             # redirect with success message
             redirect_to restroom_path(@restroom), flash: {message: "#{@restroom.name} has been updated."}
