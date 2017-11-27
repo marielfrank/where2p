@@ -1,2 +1,4 @@
-<%= link_to "Edit #{resource.class.name}", edit_link, class: 'btn ghost-cta' %>
-<%= link_to "Delete #{resource.class.name}", resource_link, method: 'delete', class: 'btn ghost-cta' %>
+<% if logged_in_as_admin? %>
+    <%= link_to "Edit #{resource.class.name}", edit_link, class: 'btn ghost-cta' %>
+    <%= link_to "Delete #{resource.class.name}", resource_link, method: 'delete', class: 'btn ghost-cta' %>
+<% end %>

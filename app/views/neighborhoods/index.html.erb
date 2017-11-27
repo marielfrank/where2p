@@ -1,10 +1,6 @@
 <h1>Find restrooms by neighborhood</h1>
+<%= render partial: 'neighborhoods/add_neighborhood', neighborhood: @neighborhood %>
 <%= render partial: 'neighborhoods/list_neighborhoods', locals: {neighborhoods: @neighborhoods} %>
-<% if logged_in_as_admin? %>
-    <h3>Add a new neighborhood</h3>
-
-    <%= render partial: 'form', locals: {neighborhood: @neighborhood, submit_text: 'Add neighborhood'} %>
-<% end %>
 
 <%= render 'layouts/close_main_open_nav' %>
 

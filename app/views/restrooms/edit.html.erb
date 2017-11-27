@@ -1,8 +1,5 @@
 <h1>Update Restroom</h1>
-<%= form_for @restroom do |f| %>
-    <%= render partial: 'form', locals: {restroom: @restroom, f: f} %>
-    <%= f.submit "Edit restroom", class: 'btn cta' %>
-<% end %>
+<%= render partial: 'form', locals: {restroom: @restroom, submit_text: "Edit restroom"} %>
 
 <%= render 'layouts/close_main_open_nav' %>
 

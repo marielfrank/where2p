@@ -4,6 +4,6 @@
 <%= link_to "where2p Top 5", restrooms_top_five_path, class: 'btn ghost-cta' %>
 <% if logged_in_as_admin? %>
     <h4>Admin Panel</h4>
-    <%= link_to "Add neighborhood", neighborhoods_path, class: 'btn cta' %>
+    <%= link_to "Add neighborhood", neighborhoods_path, class: 'btn cta' %><br>
     <%= link_to "View/update users", users_path, class: 'btn ghost-cta' %>
 <% end %>

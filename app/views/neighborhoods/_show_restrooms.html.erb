@@ -1,0 +1,10 @@
+<% if !neighborhood.restrooms.empty? %>
+    <% neighborhood.restrooms.each do |restroom| %>
+        <p><%= link_to restroom.name, restroom_path(restroom) %></p>
+    <% end %>
+<% elsif logged_in? %>
+    <p>Be the first to add a restroom in this neighborhood!</p>
+    <p><%= link_to "Add a new restroom", new_restroom_path, class: 'btn cta' %></p>
+<% else %>
+    <p>We don't know about any restrooms in <%= neighborhood.name %> yet! Sign in to add one ;)</p>
+<% end %>
