@@ -1,4 +1,4 @@
-<h1>Update <%= current_user == @user ? "your" : "#{@user.name}'s'" %> profile</h1>
+<h1>Update <%= your_or_current %> profile</h1>
 <%= render partial: 'form', locals: {user: @user, submit_text: "Update Profile"} %>
 
 <%= render 'layouts/close_main_open_nav' %>

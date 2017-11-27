@@ -1,0 +1,7 @@
+<%= form_for User.new, url: sessions_path do |f| %>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %><br>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %><br>
+    <%= f.submit 'Log In', class: 'btn cta' %>
+<% end %>

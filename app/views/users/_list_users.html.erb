@@ -1,0 +1,7 @@
+<% users.each do |u| %>
+    <h3><%= u.name %> <%= render partial: 'layouts/edit_and_delete', locals: {resource: u, edit_link: edit_user_path(u), resource_link: user_path(u)} %></h3>
+    <ul>
+        <li><strong>Email address:</strong> <%= u.email %></li>
+        <li><strong>Admin?:</strong> <%= admin_yes_or_no(u) %></li>
+    </ul>
+<% end %>

@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     def update
         # attempt to update user with strong params
         if @user.update(user_params)
-            redirect_to restrooms_path, flash: {message: "Your profile has been updated."}
+            redirect_to restrooms_path, flash: {message: "#{your_or_current.titleize} profile has been updated."}
         else
             # flash errors with 'fields_with_errors' highlighting fields in question
             flash[:message] = flash_error(@user)
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     def destroy
         name = @user.name
         @user.delete
-        redirect_to root_path, flash: {message: "Your profile has been deleted, #{name}. Sorry to see you go!"}
+        redirect_to root_path, flash: {message: "#{your_or_current.titleize} profile has been deleted, #{name}. Sorry to see you go!"}
     end
 
     private

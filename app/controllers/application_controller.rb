@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
     redirect_to restrooms_path, flash: {message: "Welcome, #{@user.name}!"}
   end
 
+  def your_or_current
+    current_user == @user ? "your" : "#{@user.name}'s"
+  end
+
   # allow current_user and logged_in? to be used in views
-  helper_method [:current_user, :logged_in?]
+  helper_method [:current_user, :logged_in?, :your_or_current]
 end

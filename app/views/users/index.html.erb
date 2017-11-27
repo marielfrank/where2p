@@ -1,10 +1,4 @@
 <h1>All users</h1>
-<% @users.each do |u| %>
-    <h3><%= u.name %> <%= render partial: 'layouts/edit_and_delete', locals: {resource: u, edit_link: edit_user_path(u), resource_link: user_path(u)} %></h3>
-    <ul>
-        <li><strong>Email address:</strong> <%= u.email %></li>
-        <li><strong>Admin?:</strong> <%= u.admin? ? "Yes" : "No" %></li>
-    </ul>
-<% end %>
+<%= render 'users/list_users', users: @users %>
 <%= render 'layouts/close_main_open_nav' %>
 <%= render 'layouts/right_nav_links' %>

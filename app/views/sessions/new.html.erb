@@ -1,11 +1,5 @@
 <h1>Log In</h1>
-<%= form_for User.new, url: sessions_path do |f| %>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %><br>
-    <%= f.label :password %><br>
-    <%= f.password_field :password %><br>
-    <%= f.submit 'Log In', class: 'btn cta' %>
-<% end %>
+<%= render 'sessions/login_form' %>
 <%= render 'sessions/oauth-link' %>
 
 <%= render 'layouts/close_main_open_nav' %>
