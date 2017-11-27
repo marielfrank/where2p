@@ -1,22 +1,8 @@
 <h1><%= pluralize(@restroom.ratings_quantity, "rating") %> for <%= link_to @restroom.name, restroom_path(@restroom) %></h1>
-<% if !@ratings.empty? %>
-    <% @ratings.each do |rat| %>
-        <% if rat.id %>
-            <h4><strong><%= pluralize(rat.stars, 'star') %></strong></h4>
-            <p>"<%= rat.comment %>" ~ <%= rat.user.name %></p>
-            <% if logged_in? && current_user.owner_or_admin?(rat) %>
-                <%= render partial: 'layouts/edit_and_delete', locals: {resource: rat, edit_link: edit_restroom_rating_path(@restroom, rat), resource_link: restroom_rating_path(@restroom, rat)} %>
-            <% end %>
-        <% end %>
-    <% end %>
-<% else %>
-    <%= render 'no_ratings' %>
-<% end %>
+<%= render 'ratings/list_ratings', ratings: @ratings if !@ratings.empty? %>
+<%= render 'no_ratings' if @ratings.empty? %>
 
-<% if logged_in? %>
-    <h3>Add new rating for <%= @restroom.name %></h3>
-    <%= render partial: 'form', locals: {rating: @rating, submit_text: 'Add rating'} %>
-<% end %>
+<%= render 'ratings/add_rating', rating: @rating %>
 
 <%= render 'layouts/close_main_open_nav' %>
 

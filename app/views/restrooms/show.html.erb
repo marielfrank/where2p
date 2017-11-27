@@ -2,43 +2,17 @@
 <h3>Address: <%= @restroom.address %> in <%= @restroom.neighborhood.name %></h3>
 
 <!-- add edit & delete buttons if admin -->
-<% if logged_in_as_admin? %>
-    <%= render partial: 'layouts/edit_and_delete', locals: {resource: @restroom, edit_link: edit_restroom_path(@restroom), resource_link: restroom_path(@restroom)} %>
-<% end %>
+<%= render partial: 'layouts/edit_and_delete', locals: {resource: @restroom, edit_link: edit_restroom_path(@restroom), resource_link: restroom_path(@restroom)} %>
 
-<!-- if restroom has ratings, add average rating & ratings view link -->
-<% if @restroom.ratings_quantity > 0 %>
-    <p><b>Average Rating: </b><%= pluralize(@restroom.average_rating, 'stars') %></p>
-    <%= link_to 'View ratings', restroom_ratings_path(@restroom), class: 'btn cta' %>
-<% else %>
-<!-- if restroom has no ratings, add 'no ratings' content -->
-    <%= render 'no_ratings' %>
-<% end %><br>
+<!-- average rating, ratings view link, link to rate -->
+<%= render 'restrooms/ratings', restroom: @restroom %>
+<br>
 
-<!-- link to rate restroom -->
-Been to this restroom?<br>
-<%= link_to "Rate #{@restroom.name}", restroom_ratings_path(@restroom), class: 'btn cta' if logged_in?%>
-
-<p><b>Tags: </b></p>
-<% if !@restroom.tags.empty? %>
-    <% @restroom.tags.each do |tag| %>
-        <p><%= link_to tag.description, tag_path(tag) %></p>
-    <% end %>
-    <% if logged_in? %><p><b>Add more tags:</b></p><% end %>
-    
-<% elsif logged_in? %>
-    <p>Be the first to add tags to this restroom!</p>
-<% else %>
-    <p>This restroom hasn't been tagged yet.</p>
-<% end %>
+<%= render 'restrooms/list_tags', restroom: @restroom %>
 
 <!-- add tags form -->
-<% if logged_in? %>
-    <%= form_for @restroom do |f| %>
-        <%= render partial: 'add_tags', locals: {restroom: @restroom, f: f} %>
-        <%= f.submit "Add tags to #{@restroom.name}" , class: 'btn cta' %>
-    <% end %>
-<% end %>
+<%= render partial: 'add_tags', locals: {restroom: @restroom, submit_text: "Add tags to #{@restroom.name}"} if logged_in? %>
+
 
 <%= render 'layouts/close_main_open_nav' %>
 

@@ -1,0 +1,4 @@
+<% if logged_in? %>
+    <h3>Add new rating for <%= @restroom.name %></h3>
+    <%= render partial: 'form', locals: {rating: @rating, submit_text: 'Add rating'} %>
+<% end %>

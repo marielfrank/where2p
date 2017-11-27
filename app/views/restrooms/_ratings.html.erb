@@ -1,0 +1,10 @@
+<% if restroom.ratings_quantity > 0 %>
+    <p><b>Average Rating: </b><%= pluralize(restroom.average_rating, 'stars') %></p>
+    <%= link_to 'View ratings', restroom_ratings_path(restroom), class: 'btn cta' %>
+<% else %>
+    <%= render 'restrooms/no_ratings', restroom: @restroom %>
+<% end %>
+
+<!-- link to rate restroom -->
+Been to this restroom?<br>
+<%= link_to "Rate #{@restroom.name}", restroom_ratings_path(@restroom), class: 'btn cta' if logged_in?%>

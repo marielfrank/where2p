@@ -1,0 +1,4 @@
+<% restrooms.each do |rr| %>
+    <h4><strong><%= link_to rr.name, restroom_path(rr) %></strong> &mdash; <%= rr.neighborhood.name %></h4>
+    <p>Average rating: <%= rr.average_rating %></p>
+<% end %>

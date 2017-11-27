@@ -12,6 +12,7 @@ class Restroom < ApplicationRecord
     has_many :restroom_tags
     has_many :tags, :through => :restroom_tags
 
+    # allow restroom to build rating if rating has stars
     def ratings_attributes=(ratings_attributes)
         ratings_attributes.values.each do |attr|
             rating = Rating.new(attr)
@@ -42,7 +43,7 @@ class Restroom < ApplicationRecord
 
     # get restroom's average rating
     def average_rating
-        (ratings_total/ratings_quantity.to_f).round(1)
+        ratings_quantity > 0 ? (ratings_total/ratings_quantity.to_f).round(1) : "This restroom has not been rated yet"
     end
 
     # average rating helper

@@ -1,7 +1,11 @@
-<%= f.collection_check_boxes :tag_ids, Tag.all, :id, :description do |b| %>
-    <%= b.label(class:"checkbox_container") { b.check_box + b.text } %>
-<% end %><br>
-<%= f.fields_for :tags, restroom.tags.build do |tags_attributes| %>
-    <%= tags_attributes.label 'Add a new tag' %><br>
-    <%= tags_attributes.text_field :description %><br>
-<% end %>
+<%= form_for @restroom do |f| %>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :description do |b| %>
+        <%= b.label(class:"checkbox_container") { b.check_box + b.text } %>
+    <% end %><br>
+    <%= f.fields_for :tags, restroom.tags.build do |tags_attributes| %>
+        <%= tags_attributes.label 'Add a new tag' %><br>
+        <%= tags_attributes.text_field :description %><br>
+    <% end %>
+    <%= f.submit "#{submit_text}" , class: 'btn cta' %>
+<% end %>        
+    

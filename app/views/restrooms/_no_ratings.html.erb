@@ -1,5 +1,7 @@
-<% if logged_in? %>
-    <p>Be the first to rate this restroom!</p>
-<% else %>
-    <p>This restroom hasn't been rated yet</p>
+<% if (restroom.ratings_quantity == 0) %>
+    <% if logged_in? %>
+        <p>Be the first to rate this restroom!</p>
+    <% else %>
+        <p>This restroom hasn't been rated yet</p>
+    <% end %>
 <% end %>
