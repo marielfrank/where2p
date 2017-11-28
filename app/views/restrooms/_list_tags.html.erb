@@ -1,4 +1,5 @@
 <h3><b>Tags: </b></h3>
+<!-- display tags if exist -->
 <% if !@restroom.tags.empty? %>
     <% @restroom.tags.each do |tag| %>
         <%= link_to tag.description, tag_path(tag) %><br>

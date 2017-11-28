@@ -1,4 +1,5 @@
 module RatingsHelper
+    # content for when no ratings
     def no_ratings
         if logged_in?
             "Be the first to rate this restroom!"

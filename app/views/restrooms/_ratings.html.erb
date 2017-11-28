@@ -1,3 +1,4 @@
+<!-- display ratings if exist -->
 <% if restroom.ratings_quantity > 0 %>
     <p><b>Average Rating: </b><%= pluralize(restroom.average_rating, 'stars') %></p>
     <%= link_to 'View ratings', restroom_ratings_path(restroom), class: 'btn cta' %>

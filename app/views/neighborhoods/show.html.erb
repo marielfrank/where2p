@@ -1,4 +1,4 @@
-<h1>Restrooms in <%= @neighborhood.name %></h1>
+<h2>Restrooms in <%= @neighborhood.name %></h2>
 <%= render partial: 'layouts/edit_and_delete', locals: {resource: @neighborhood, edit_link: edit_neighborhood_path(@neighborhood), resource_link: neighborhood_path(@neighborhood)} %>
 
 <%= render 'neighborhoods/show_restrooms', neighborhood: @neighborhood %>

@@ -1,7 +1,7 @@
 <%= form_for user do |f| %>
     <%= f.label :name %><br>
     <%= f.text_field :name %><br>
-    <%= render 'users/form_fields', locals: {f: f} %>
+    <%= render partial: 'users/form_fields', locals: {f: f} %>
     <%= f.label 'Are you an admin?' %>
     <%= f.check_box :admin %><br>
     <%= f.submit "#{submit_text}", class: 'btn cta' %>

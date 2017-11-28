@@ -17,8 +17,10 @@ class User < ApplicationRecord
 
     # check if user is admin or owner of a resource
     def owner_or_admin?(resource)
-        if resource.respond_to?('user')
-            admin? || resource.user == self
+        if admin?
+            true
+        elsif resource.respond_to?('user')
+            resource.user == self
         else
             false
         end
