@@ -2,7 +2,7 @@
     <p><b>Average Rating: </b><%= pluralize(restroom.average_rating, 'stars') %></p>
     <%= link_to 'View ratings', restroom_ratings_path(restroom), class: 'btn cta' %>
 <% else %>
-    <%= render 'restrooms/no_ratings', restroom: @restroom %>
+    <%= no_ratings if (restroom.ratings_quantity == 0) %>
 <% end %>
 <br>
 
