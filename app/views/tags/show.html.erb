@@ -1,14 +1,13 @@
 <h1>Restrooms tagged as <%= @tag.description %></h1>
+<!-- list restrooms with tag -->
 <% if @tag.restrooms.empty? %>
-    <p>Be the first to add restrooms with this tag!</p>
-    <p><%= link_to "Add a new restroom", new_restroom_path, class: 'btn cta' %></p>
+    Be the first to add restrooms with this tag!<br>
+    <%= link_to "Add a new restroom", new_restroom_path, class: 'btn cta' %><br>
 <% else %>
-    <% @tag.restrooms.each do |restroom| %>
-        <p><%= link_to restroom.name, restroom_path(restroom) %></p>
-    <% end %>
+    <%= render 'restrooms/list_restrooms', restrooms: @tag.restrooms %>
 <% end %>
 
 <%= render 'layouts/close_main_open_nav' %>
-
+<!-- add restroom button & main nav -->
 <%= render 'restrooms/add_restroom_btn' %>
 <%= render 'layouts/right_nav_links' %>

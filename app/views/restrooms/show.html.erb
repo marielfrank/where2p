@@ -14,6 +14,6 @@
 <%= render partial: 'add_tags', locals: {restroom: @restroom, submit_text: "Add tags to #{@restroom.name}"} if logged_in? %>
 
 <%= render 'layouts/close_main_open_nav' %>
-
+<!-- link to see other restrooms in same neighborhood -->
 <%= link_to "See other restrooms in #{@restroom.neighborhood.name}", neighborhood_path(@restroom.neighborhood), class: 'btn ghost-cta' %>
 <%= render 'layouts/right_nav_links' %>

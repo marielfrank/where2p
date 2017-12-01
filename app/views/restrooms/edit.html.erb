@@ -1,7 +1,8 @@
 <h1>Update Restroom</h1>
+<!-- update form -->
 <%= render partial: 'form', locals: {restroom: @restroom, submit_text: "Edit restroom"} %>
 
 <%= render 'layouts/close_main_open_nav' %>
-
+<!-- 'back to restroom' button & main nav -->
 <%= link_to "Back to #{@restroom.name}", restroom_path(@restroom), class: 'btn ghost-cta' %>
 <%= render 'layouts/right_nav_links' %>

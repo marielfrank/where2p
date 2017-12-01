@@ -1,4 +1,5 @@
 module ApplicationHelper
+    # content for when no tag/rating
     def no_resource(resource)
         if logged_in?
             "Be the first to add a #{resource} this restroom!"

@@ -1,9 +1,9 @@
 <h1>Log In</h1>
+<!-- login form & google signin -->
 <%= render 'sessions/login_form' %>
 <%= render 'sessions/oauth-link' %>
 
 <%= render 'layouts/close_main_open_nav' %>
-
+<!-- link to signup if no account -->
 <h3>Don't have an account yet?</h3>
 <%= link_to "Sign up", signup_path, class: 'btn ghost-cta' %>
-

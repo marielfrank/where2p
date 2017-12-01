@@ -1,7 +1,8 @@
 <h3>Change <%= @neighborhood.name %> name</h3>
+<!-- update form -->
 <%= render partial: 'form', locals: {neighborhood: @neighborhood, submit_text: 'Update neighborhood'} %>
 
 <%= render 'layouts/close_main_open_nav' %>
-
+<!-- 'back to neighborhood' button & main nav -->
 <%= link_to "Back to #{@neighborhood.name}", neighborhood_path(@neighborhood), class: 'btn ghost-cta' %>
 <%= render 'layouts/right_nav_links' %>

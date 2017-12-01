@@ -1,9 +1,11 @@
 <h1><%= pluralize(@restroom.ratings_quantity, "rating") %> for <%= link_to @restroom.name, restroom_path(@restroom) %></h1>
+<!-- display ratings or 'no ratings' content -->
 <%= render 'ratings/list_ratings', ratings: @ratings if !@ratings.empty? %>
 <%= render 'no_ratings' if @ratings.empty? %>
 
+<!-- add rating form -->
 <%= render 'ratings/add_rating', rating: @rating %>
 
+<!-- main nav -->
 <%= render 'layouts/close_main_open_nav' %>
-
 <%= render 'layouts/right_nav_links' %>

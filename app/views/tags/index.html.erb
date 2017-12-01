@@ -1,9 +1,10 @@
 <h1>Find restrooms by tag</h1>
+<!-- list tags -->
 <% @tags.each do |tag| %>
     <p><strong><%= link_to tag.description, tag_path(tag) %></strong></p>
 <% end %>
 
 <%= render 'layouts/close_main_open_nav' %>
-
+<!-- 'add restroom' button & main nav -->
 <%= render 'restrooms/add_restroom_btn' %>
 <%= render 'layouts/right_nav_links' %>

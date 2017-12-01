@@ -1,3 +1,4 @@
+<!-- list neighborhoods -->
 <% neighborhoods.each do |n| %>
     <h3><%= link_to n.name, neighborhood_path(n) %></h3>
     <%= render partial: 'layouts/edit_and_delete', locals: {resource: n, edit_link: edit_neighborhood_path(n), resource_link: neighborhood_path(n)} if logged_in_as_admin? %>

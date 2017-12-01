@@ -1,8 +1,11 @@
 <h2>Restrooms in <%= @neighborhood.name %></h2>
+<!-- edit & delete buttons -->
 <%= render partial: 'layouts/edit_and_delete', locals: {resource: @neighborhood, edit_link: edit_neighborhood_path(@neighborhood), resource_link: neighborhood_path(@neighborhood)} %>
 
+<!-- edit & delete buttons -->
 <%= render 'neighborhoods/show_restrooms', neighborhood: @neighborhood %>
 
+<!-- right navigation -->
 <%= render 'layouts/close_main_open_nav' %>
 
 <%= render 'layouts/right_nav_links' %>

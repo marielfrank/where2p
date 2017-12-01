@@ -1,9 +1,9 @@
 <h1>Sign Up</h1>
+<!-- signup form & google signin -->
 <%= render partial: 'form', locals: {user: @user, submit_text: "Sign Up"} %>
-
 <%= render 'sessions/oauth-link' %>
 
 <%= render 'layouts/close_main_open_nav' %>
-
+<!-- link to login if account exists -->
 <h3>Already have an account?</h3>
 <%= link_to "Log in", login_path, class: 'btn ghost-cta' %>

@@ -1,8 +1,11 @@
 <h1>Find restrooms by neighborhood</h1>
+<!-- add neighborhood form -->
 <%= render partial: 'neighborhoods/add_neighborhood', neighborhood: @neighborhood %>
+<!-- list neighborhoods -->
 <%= render partial: 'neighborhoods/list_neighborhoods', locals: {neighborhoods: @neighborhoods} %>
 
 <%= render 'layouts/close_main_open_nav' %>
 
+<!-- 'add restroom' button & main nav -->
 <%= render 'restrooms/add_restroom_btn' %>
 <%= render 'layouts/right_nav_links' %>
