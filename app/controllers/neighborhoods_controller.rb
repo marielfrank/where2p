@@ -17,8 +17,7 @@ class NeighborhoodsController < ApplicationController
             redirect_to neighborhood_path(@neighborhood), flash: {message: "#{@neighborhood.name} has been successfully created."}
         else
             # flash errors with 'fields_with_errors' highlighting fields in question
-            flash[:message] = flash_error(@neighborhood)
-            render 'neighborhoods/index'
+            display_errors(@neighborhood, 'neighborhoods/index')
         end
     end
 
@@ -35,8 +34,7 @@ class NeighborhoodsController < ApplicationController
             redirect_to neighborhood_path(@neighborhood), flash: {message: "#{@neighborhood.name} has been updated."}
         else
             # flash errors with 'fields_with_errors' highlighting fields in question
-            flash[:message] = flash_error(@neighborhood)
-            render 'neighborhoods/edit'
+            display_errors(@neighborhood, 'neighborhoods/edit')
         end
     end
 

@@ -25,8 +25,7 @@ class UsersController < ApplicationController
             log_user_in
         else
             # flash errors with 'fields_with_errors' highlighting fields in question
-            flash[:message] = flash_error(@user)
-            render 'users/new'
+            display_errors(@user, 'users/new')
         end
     end
 
@@ -39,8 +38,7 @@ class UsersController < ApplicationController
             redirect_to restrooms_path, flash: {message: "#{your_or_current.titleize} profile has been updated."}
         else
             # flash errors with 'fields_with_errors' highlighting fields in question
-            flash[:message] = flash_error(@user)
-            render 'users/edit'
+            display_errors(@user, 'users/edit')
         end
     end
 

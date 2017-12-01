@@ -27,8 +27,7 @@ class RatingsController < RestroomsController
         else
             # render form errors & error messages
             @ratings = @restroom.ratings
-            flash[:message] = flash_error(@rating)
-            render 'ratings/index'
+            display_errors(@rating, 'ratings/index')
         end
     end
 
@@ -49,8 +48,7 @@ class RatingsController < RestroomsController
             redirect_to restroom_ratings_path(@restroom), flash: {message: "Rating has been updated."}
         else
             # render form errors & error messages
-            flash[:message] = flash_error(@rating)
-            render 'ratings/edit'
+            display_errors(@rating, 'ratings/edit')
         end
     end
 

@@ -43,8 +43,7 @@ class RestroomsController < ApplicationController
             redirect_to restroom_path(@restroom), flash: {message: "#{@restroom.name} has been updated."}
         else
             # flash errors with 'fields_with_errors' highlighting fields in question
-            flash[:message] = flash_error(@restroom)
-            render 'restrooms/edit'
+            display_errors(@restroom, 'restrooms/edit')
         end
     end
 

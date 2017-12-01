@@ -21,8 +21,7 @@ class SessionsController < ApplicationController
                 log_user_in
             else
                 # flash errors with 'fields_with_errors' highlighting fields in question
-                flash[:message] = flash_error(@user)
-                render 'sessions/new'
+                display_errors(@user, 'sessions/new')
             end
         end
     end
