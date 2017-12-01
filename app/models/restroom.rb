@@ -16,7 +16,6 @@ class Restroom < ApplicationRecord
     def ratings_attributes=(ratings_attributes)
         ratings_attributes.values.each do |attr|
             rating = Rating.new(attr)
-            byebug
             self.ratings << rating if rating.stars
         end
     end

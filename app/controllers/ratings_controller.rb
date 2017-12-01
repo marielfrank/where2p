@@ -37,11 +37,14 @@ class RatingsController < RestroomsController
         if !current_user.owner_or_admin?(@rating)
             redirect_to restroom_ratings_path(@restroom), flash: {message: "You don't have permission to edit another user's rating."}
         end
+        @user = @rating.user
     end
 
     def update
+        og_user = @rating.user
         # make sure rating can be updated with strong params
         if @rating.update(rating_params)
+            @rating.update(user: og_user)
             # redirect with success message
             redirect_to restroom_ratings_path(@restroom), flash: {message: "Rating has been updated."}
         else
@@ -52,14 +55,9 @@ class RatingsController < RestroomsController
     end
 
     def destroy
-        # make sure user is owner of rating or an admin
-        if current_user.owner_or_admin?(@rating)
-            # delete rating & redirect with success message
-            @rating.delete
-            redirect_to restroom_ratings_path(@restroom), flash: {message: "Rating has been deleted."}
-        else
-            redirect_to restroom_ratings_path(@restroom), flash: {message: "You don't have permission to remove another user's rating."}
-        end
+        # delete rating & redirect with success message
+        @rating.delete
+        redirect_to restroom_ratings_path(@restroom), flash: {message: "Rating has been deleted."}
     end
 
     private

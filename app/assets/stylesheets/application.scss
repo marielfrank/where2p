@@ -1,16 +1,19 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+// FONTS
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
 body {
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
+// HEADER
 h1, h2, h3, h4 {
     font-weight: bold;
 }
 
+// BUTTONS
 .btn.cta {
     color: #fff;
     background-color: #222;
@@ -43,6 +46,7 @@ h1, h2, h3, h4 {
     box-shadow: 0 0 4px #4286f5;
 }
 
+// LINKS
 a {
     color: #49ae95;
 }
@@ -51,6 +55,7 @@ a:hover {
     color: #4286f5;
 }
 
+// FORM
 #flash_message {
     border: 2px dashed #4286f5;
     color: #4286f5;
@@ -80,8 +85,7 @@ input[type=checkbox] {
   padding: 10px;
 }
 
-/*------ FOOTER ------*/
-
+// FOOTER
 .container {
     margin-bottom: 100px;
 }

@@ -25,4 +25,13 @@ class User < ApplicationRecord
             false
         end
     end
+
+    def self.set_user_from_oauth(uid)
+        find_or_create_by(uid: uid) do |u|
+            u.name = auth['info']['name']
+            u.email = auth['info']['email']
+            # set random secure password if new user
+            u.password ||= SecureRandom.base58
+        end
+    end
 end

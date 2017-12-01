@@ -23,11 +23,17 @@ class ApplicationController < ActionController::Base
     redirect_to restrooms_path, flash: {message: "Please log in first ;)"} if !logged_in?    
   end
 
+  def display_errors(resource, view)
+    flash[:message] = flash_error(resource)
+    render view
+  end
+
   # get error message
   def flash_error(object)
     object.errors.full_messages.join(", ")
   end
 
+  # set session's user_id & redirect with welcome message
   def log_user_in
     session[:user_id] = @user.id
     redirect_to restrooms_path, flash: {message: "Welcome, #{@user.name}!"}

@@ -9,12 +9,7 @@ class SessionsController < ApplicationController
         # check if env['omniauth.auth'] has a value, i.e., Google authenticated user 
         if auth
             # ensure no duplicates of user are created from oauth
-            @user = User.find_or_create_by(uid: auth['uid']) do |u|
-                u.name = auth['info']['name']
-                u.email = auth['info']['email']
-                # set random secure password if new user
-                u.password ||= SecureRandom.base58
-            end
+            @user = User.set_user_from_oauth(auth['uid'])
             # call log in method
             log_user_in
         else
@@ -26,7 +21,7 @@ class SessionsController < ApplicationController
                 log_user_in
             else
                 # flash errors with 'fields_with_errors' highlighting fields in question
-                flash[:message] = "Oops! Please provide a valid email address and password."
+                flash[:message] = flash_error(@user)
                 render 'sessions/new'
             end
         end

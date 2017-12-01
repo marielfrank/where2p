@@ -1,5 +1,5 @@
 <h2><%= "Update #{your_or_current} rating of #{@restroom.name}" %></h2>
-<%= render partial: 'form', locals: {rating: @rating, submit_text: 'Edit rating'} %>
+<%= render partial: 'ratings/form', locals: {rating_url: restroom_rating_path(@restroom, @rating), rating: @rating, submit_text: 'Edit rating'} %>
 
 <%= render 'layouts/close_main_open_nav' %>
 

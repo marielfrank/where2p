@@ -7,7 +7,7 @@
     <%= f.collection_select(:neighborhood_id, Neighborhood.all, :id, :name, prompt: true) %><br>
 
     <h3>Add tags</h3>
-    <%= render partial: 'add_tags', locals: {restroom: restroom, f: f} %>
+    <%= render partial: 'restrooms/tag_fields', locals: {restroom: restroom, f: f} %>
 
     <h3>Add a rating</h3>
     <%= f.fields_for :ratings, restroom.ratings.build do |ratings_attributes| %>
