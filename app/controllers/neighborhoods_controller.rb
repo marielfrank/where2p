@@ -5,7 +5,7 @@ class NeighborhoodsController < ApplicationController
 
     # load neighborhoods as instance variable & build new neighborhood for 'new' form
     def index
-        @neighborhoods = Neighborhood.all
+        set_neighborhoods
         @neighborhood = Neighborhood.new
     end
 
@@ -17,6 +17,7 @@ class NeighborhoodsController < ApplicationController
             redirect_to neighborhood_path(@neighborhood), flash: {message: "#{@neighborhood.name} has been successfully created."}
         else
             # flash errors with 'fields_with_errors' highlighting fields in question
+            set_neighborhoods
             display_errors(@neighborhood, 'neighborhoods/index')
         end
     end
@@ -55,6 +56,10 @@ class NeighborhoodsController < ApplicationController
     # set neighborhood variable based on id in params
     def set_neighborhood
         @neighborhood = Neighborhood.find_by(id: params[:id])
+    end
+
+    def set_neighborhoods
+        @neighborhoods = Neighborhood.all
     end
 
     # use strong params
