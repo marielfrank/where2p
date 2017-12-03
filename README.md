@@ -1,6 +1,6 @@
 # where2p
 
-An app to help you find the closest public restroom.
+An app designed to help you find the closest public restroom.
 
 ## Getting started
 
@@ -19,3 +19,9 @@ A few things that are in the works:
 * Integrating Google Maps functionality
 * Collapsing the right-hand nav for a cleaner interface
 * Adding more fun imagery
+
+## Contributer's Guide
+Please review the contributors guide if you would like to contribute to this project.
+
+## License
+MIT License
