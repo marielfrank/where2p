@@ -21,7 +21,7 @@ A few things that are in the works:
 * Adding more fun imagery
 
 ## Contributer's Guide
-Please review the contributors guide if you would like to contribute to this project.
+Please review the [contributors guide](https://github.com/marielfrank/where2p/blob/master/contributers-guide.md) if you would like to contribute to this project.
 
 ## License
-MIT License
+[MIT License](https://github.com/marielfrank/where2p/blob/master/LICENSE)
