@@ -1,16 +1,17 @@
 # where2p
 
-An app designed to help you find the closest public restroom.
+An app designed to help you find the closest public restroom that meets your needs.
 
-## Getting started
+## Getting started | Installation
 
 This app requires Ruby 2.3.1 and Rails 5.1.4.
 
 Once you have Ruby 2.3.1 and Rails 5.1.4 installed,
 
- * `git clone https://github.com/marielfrank/where2p.git`
+ * fork `https://github.com/marielfrank/where2p.git` & clone locally
  * `cd where2p`
  * `bundle install`
+ * `rake db:migrate`
  * `rails s`
 
 ## Road Map
