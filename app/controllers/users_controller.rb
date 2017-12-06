@@ -1,13 +1,17 @@
 class UsersController < ApplicationController
     # set variables and require admin/login access before certain actions
-    before_action :set_user, only: [:edit, :update, :destroy]
+    before_action :set_user, only: [:edit, :show, :update, :destroy]
     before_action :require_admin, only: [:index]
-    before_action :require_login, only: [:edit, :destroy]
-    before_action :authorize_user, only: [:edit, :update, :destroy]
+    before_action :require_login, only: [:edit, :show, :destroy]
+    before_action :authorize_user, only: [:edit, :show, :update, :destroy]
 
     # all users only visible to admin
     def index
         @users = User.all
+    end
+
+    def show
+        @restrooms = @user.restrooms
     end
 
     def new

@@ -6,4 +6,5 @@
     <h4>Admin Panel</h4>
     <%= link_to "Add neighborhood", neighborhoods_path, class: 'btn cta' %><br>
     <%= link_to "View/update users", users_path, class: 'btn ghost-cta' %>
-<% end %>
+<% end %><br>
+<%= link_to "View Profile", user_path(current_user), class: 'btn ghost-cta' if logged_in? %>

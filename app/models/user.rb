@@ -35,4 +35,9 @@ class User < ApplicationRecord
             u.password ||= SecureRandom.base58
         end
     end
+
+    # rating for restroom
+    def rating_for(restroom)
+        !!self.ratings.where(restroom: restroom).last ? self.ratings.where(restroom: restroom).last.stars : "You haven't rated this restroom yet."
+    end
 end

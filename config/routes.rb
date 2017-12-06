@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
   
   resources :neighborhoods, except: [:new]
-  resources :users, except: [:show]
+  resources :users
   resources :tags, only: [:index, :show, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
 end
