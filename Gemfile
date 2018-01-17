@@ -63,3 +63,6 @@ gem 'omniauth-google-oauth2'
 # for bootstrap
 gem 'bootstrap'
 gem 'jquery-rails'
+
+# for json serialization
+gem 'active_model_serializers'
