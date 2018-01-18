@@ -1,6 +1,7 @@
 class RestroomsController < ApplicationController
     # set variables and require login access before certain actions
     before_action :set_restroom, only: [:show, :edit, :update, :destroy]
+    before_action :set_tags, only: [:show]
     before_action :require_login, except: [:index, :show, :top_five]
 
     # load restrooms as instance variable
@@ -58,6 +59,10 @@ class RestroomsController < ApplicationController
     # set restroom variable based on id in params
     def set_restroom
         @restroom = Restroom.find(params[:id])
+    end
+
+    def set_tags
+        @tags = @restroom.tags
     end
 
     # use strong params
