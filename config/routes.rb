@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   get '/restrooms/top_five' => 'restrooms#top_five'
 
+  get '/restrooms/:restroom_id/tags' => 'restrooms#tags'
+  post '/restrooms/:restroom_id/tags' => 'restrooms#update'
+
   resources :restrooms do
     resources :ratings, except: [:new, :show]
   end

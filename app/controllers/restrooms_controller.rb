@@ -52,6 +52,12 @@ class RestroomsController < ApplicationController
         end
     end
 
+    def tags
+        @restroom = Restroom.find(params[:restroom_id])
+        @tags = @restroom.tags
+        render json: @tags
+    end
+
     # delete & redirect with success message
     def destroy
         name = @restroom.name
