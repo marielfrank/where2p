@@ -17,11 +17,11 @@ $(function() {
   $(".js-prev").on("click", function() {
     let id = $(this).data("id");
     $.get("/restrooms/" + id + ".json", function(data) {
-        $('#preview-address-' + id).text(`Address: ${data['address']}`);
+        console.log(data)
+        $('#preview-address-' + id).text(`Address: ${data['address']} in ${data['neighborhood']['name']}`);
         let tags = data['tags'].map(tag => `<li>${tag['description']}</li>`).join("<br>");
         $('#preview-tags-' + id).html("<ul>" + tags + "</ul>");
     });
   });
 });
 </script>
- <%# in ${data['neighborhood']} %>

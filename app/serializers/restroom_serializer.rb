@@ -1,3 +1,3 @@
 class RestroomSerializer < ActiveModel::Serializer
-  attributes :name, :address, :tags
+  attributes :name, :address, :tags, :neighborhood
 end
