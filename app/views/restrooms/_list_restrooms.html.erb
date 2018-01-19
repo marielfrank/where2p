@@ -3,10 +3,10 @@
     <% if logged_in? %>
         <p>Your rating: <%= current_user.rating_for(rr) %></p>
     <% end %>
-    <p>Average rating: <%= rr.average_rating %></p>
-    <button class="js-prev" data-id="<%= rr.id %>">Preview Restroom</button>
+    Average rating: <%= rr.average_rating %><br>
+    <button class="js-prev btn ghost-cta" data-id="<%= rr.id %>">Preview</button>
 
-    <div id="preview-rest-<%= rr.id %>">
+    <div class="preview-rest" id="preview-rest-<%= rr.id %>">
         <div id="preview-address-<%= rr.id %>"></div>
         <div id="preview-tags-<%= rr.id %>"></div>
     </div>
@@ -14,14 +14,15 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function() {
-  $(".js-prev").on("click", function() {
-    let id = $(this).data("id");
-    $.get("/restrooms/" + id + ".json", function(data) {
-        console.log(data)
-        $('#preview-address-' + id).text(`Address: ${data['address']} in ${data['neighborhood']['name']}`);
-        let tags = data['tags'].map(tag => `<li>${tag['description']}</li>`).join("<br>");
-        $('#preview-tags-' + id).html("<ul>" + tags + "</ul>");
+    $(".js-prev").on("click", function() {
+        let id = $(this).data("id");
+        $(".preview-rest").hide();
+        $("#preview-rest-" + id).show();
+        $.get("/restrooms/" + id + ".json", function(data) {
+            $('#preview-address-' + id).html(`<strong>Address:</strong> ${data['address']} in ${data['neighborhood']['name']}`);
+            let tags = data['tags'].map(tag => `${tag['description']}`).join("<br>");
+            $('#preview-tags-' + id).html("<strong>Tags:</strong><br>" + tags);
+        });
     });
-  });
 });
 </script>
