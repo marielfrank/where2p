@@ -4,10 +4,24 @@
         <p>Your rating: <%= current_user.rating_for(rr) %></p>
     <% end %>
     <p>Average rating: <%= rr.average_rating %></p>
-    <%= link_to "Preview Restaurant", %><br>
+    <button class="js-prev" data-id="<%= rr.id %>">Preview Restroom</button>
 
     <div id="preview-rest-<%= rr.id %>">
         <div id="preview-address-<%= rr.id %>"></div>
         <div id="preview-tags-<%= rr.id %>"></div>
     </div>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-prev").on("click", function() {
+    let id = $(this).data("id");
+    $.get("/restrooms/" + id + ".json", function(data) {
+        $('#preview-address-' + id).text(`Address: ${data['address']}`);
+        let tags = data['tags'].map(tag => `<li>${tag['description']}</li>`).join("<br>");
+        $('#preview-tags-' + id).html("<ul>" + tags + "</ul>");
+    });
+  });
+});
+</script>
+ <%# in ${data['neighborhood']} %>
