@@ -18,14 +18,10 @@
 <%= link_to "See other restrooms in #{@restroom.neighborhood.name}", neighborhood_path(@restroom.neighborhood), class: 'btn ghost-cta' %>
 <%= render 'layouts/right_nav_links' %>
 
-<!-- handlebars template for ratings -->
-<script id="ratings-template" type="text/x-handlebars-template">
-    <div id="">
-        <p>{{description}}</p>
-        <ul>
-            {{#each ratings}}
-            <li>{{stars}}</li>
-            {{/each}}
-        </ul>
+<!-- handlebars template for rating -->
+<script id="rating-partial" type="text/x-handlebars-template">
+    <div class="rating-div">
+        <h4><strong>{{stars}} star(s)</strong></h4>
+        <p>&quot;{{comment}}&quot; ~ {{userName}}</p>
     </div>
 </script>
