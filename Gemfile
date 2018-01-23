@@ -66,3 +66,6 @@ gem 'jquery-rails'
 
 # for json serialization
 gem 'active_model_serializers'
+
+# for handlebars templating
+gem 'handlebars_assets'

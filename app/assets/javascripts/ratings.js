@@ -1,6 +1,15 @@
 $(function() {
     listRatings();
 });
+
+class Rating {
+    constructor (params) {
+        this.id = params['id'];
+        this.stars = params['stars'];
+        this.comment = params['comment'];
+        this.userName = params['user']['name'];
+    }
+};
 function listRatings() {
     $("#js-view-ratings").on("click", function() {
         let id = $(this).data("id");
