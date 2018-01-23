@@ -11,9 +11,7 @@
 <%= render 'restrooms/list_tags', restroom: @restroom %>
 
 <!-- add tags form -->
-<div class="add-tags">
-    <%= render partial: 'add_tags', locals: {restroom: @restroom, submit_text: "Add tags to #{@restroom.name}"} if logged_in? %>
-</div>
+<%= render partial: 'add_tags', locals: {restroom: @restroom, submit_text: "Add tags to #{@restroom.name}"} if logged_in? %>
 
 <%= render 'layouts/close_main_open_nav' %>
 <!-- link to see other restrooms in same neighborhood -->

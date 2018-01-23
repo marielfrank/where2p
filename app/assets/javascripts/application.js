@@ -18,4 +18,4 @@
 //= require bootstrap-sprockets
 
 //= require restrooms
-//= require tags
+//= require ratings

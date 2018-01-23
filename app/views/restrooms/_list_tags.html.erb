@@ -4,7 +4,6 @@
     <% @restroom.tags.each do |tag| %>
         <%= link_to tag.description, tag_path(tag) %><br>
     <% end %>
-    <div id="js-tags"></div>
     <% if logged_in? %><h4>Add more tags:</h4><% end %>
     
 <% else %>

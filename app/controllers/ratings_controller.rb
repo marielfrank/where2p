@@ -6,11 +6,15 @@ class RatingsController < RestroomsController
 
     def index
         # ensure ratings have an associated restroom
-        if params[:restroom_id]
+        if params[:restroom_id]            
             # build new rating for form if user is logged in
             @rating = @restroom.ratings.build(user_id: current_user.id) if logged_in?
             # set ratings variable for current restroom
             @ratings = @restroom.ratings
+            respond_to do |format|
+                format.html { render 'index' }
+                format.json { render json: @ratings }
+            end
         else
             # redirect if no associated restroom
             redirect_to restrooms_path
