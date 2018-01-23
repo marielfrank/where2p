@@ -1,7 +1,7 @@
 <!-- display ratings if exist -->
 <br>
 <% if restroom.ratings_quantity > 0 %>
-    <b>Average Rating: </b><%= pluralize(restroom.average_rating, 'stars') %><br>
+    <b>Average Rating: </b><%#= pluralize(restroom.average_rating, 'stars') %><br>
     <%= link_to 'View ratings', "#", html_options = {class: 'btn cta', id: 'js-view-ratings', data: {id: restroom.id}} %>
     <div id="js-ratings"></div>
 <% else %>
@@ -11,4 +11,4 @@
 
 <!-- link to rate restroom -->
 Been to this restroom?<br>
-<%= link_to "Rate #{@restroom.name}", restroom_ratings_path(@restroom), class: 'btn cta' if logged_in?%>
+<%= link_to "Rate #{restroom.name}", "", html_options = {class: 'btn cta', id: 'js-add-rating', data: {id: restroom.id}} if logged_in?%>

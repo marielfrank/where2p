@@ -4,6 +4,6 @@
 <%= render 'no_ratings' if @ratings.empty? %>
 
 <!-- add rating form -->
-<%= render 'ratings/add_rating', rating: @rating %>
+<%= render 'ratings/add_rating', locals: {rating: @rating, restroom: @restroom} %>
 
 <%= render 'layouts/add_restroom_nav' %>

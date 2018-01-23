@@ -33,7 +33,7 @@ class RestroomsController < ApplicationController
 
     def show
         respond_to do |format|
-            format.html { render 'show' }
+            format.html { @rating = @restroom.ratings.build(user_id: current_user.id) if logged_in? }
             format.json { render json: @restroom }
         end
     end

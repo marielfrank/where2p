@@ -2,6 +2,7 @@ $(function() {
     Rating.template = $('#rating-partial').html();
     Rating.renderRating = Handlebars.compile(Rating.template);
     listRatings();
+    showRatingForm();
 });
 
 function Rating (attr) {
@@ -41,6 +42,10 @@ function listRatings() {
 //     });
 // };
 
-// function addRating() {
-    
-// }
+function showRatingForm() {
+    $("a#js-add-rating").click( function(e) {
+        // const restId = $(this).data('id');
+
+        e.preventDefault();
+    });
+};

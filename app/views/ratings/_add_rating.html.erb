@@ -1,4 +1,4 @@
 <% if logged_in? %>
     <h3>Add new rating for <%= @restroom.name %></h3>
-    <%= render partial: 'ratings/form', locals: {rating_url: restroom_ratings_path, rating: @rating, submit_text: 'Add rating'} %>
+    <%= render partial: 'ratings/form', locals: {rating_url: restroom_ratings_path(@restroom), rating: @rating, submit_text: 'Add rating'} %>
 <% end %>
