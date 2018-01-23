@@ -44,8 +44,8 @@ function listRatings() {
 
 function showRatingForm() {
     $("a#js-add-rating").click( function(e) {
-        // const restId = $(this).data('id');
-
+        $("div.hide").removeClass('hide');
+        $('a#js-add-rating').hide();
         e.preventDefault();
     });
 };
