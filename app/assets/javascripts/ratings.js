@@ -19,6 +19,7 @@ Rating.prototype.renderNewRating = function() {
 
 function listRatings() {
     $("#js-view-ratings").on("click", function(e) {
+        $('#js-ratings').html("")
         let id = $(this).data("id");
         $.get(`/restrooms/${id}/ratings.json`, function(data) {
             $('#js-ratings').append('<br>')
@@ -37,13 +38,12 @@ function postRating() {
     $('form#new_rating').submit(function(e) {
         let url = this.action
         let formData = $(this).serialize();
-        var postRequest = $.post(url, formData);
-        postRequest.done(function(ratingData) {
-            debugger
-            // let rat = new Rating(ratingData);
-            // let ratDiv = rat.renderNewRating()
-            // $('#js-ratings').append(ratDiv);
-        })
+        $.post(url, formData, function(ratingData) {
+            let rat = new Rating(ratingData);
+            let ratDiv = rat.renderNewRating()
+            $('#js-ratings').append(ratDiv);
+        }, "json");
+        $('form#new_rating').trigger("reset");
         e.preventDefault();
     });
 };

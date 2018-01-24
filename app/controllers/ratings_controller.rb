@@ -26,8 +26,11 @@ class RatingsController < RestroomsController
         @rating = @restroom.ratings.build(rating_params)
         # make sure rating isn't nil and can be saved
         if @rating && @rating.save
-            # redirect with success message
-            redirect_to restroom_ratings_path(@restroom)
+            respond_to do |format|
+                # redirect with success message
+                format.html { redirect_to restroom_ratings_path(@restroom) }
+                format.json { render json: @rating }
+            end
         else
             # render form errors & error messages
             @ratings = @restroom.ratings
