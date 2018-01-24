@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
         # check if env['omniauth.auth'] has a value, i.e., Google authenticated user 
         if auth
             # ensure no duplicates of user are created from oauth
-            @user = User.set_user_from_oauth(auth['uid'])
+            @user = User.set_user_from_oauth(auth)
             # call log in method
             log_user_in
         else
