@@ -81,13 +81,22 @@ a:hover {
 }
 
 input[type=checkbox] {
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(1.3); /* IE */
-  -moz-transform: scale(1.3); /* FF */
-  -webkit-transform: scale(1.3); /* Safari and Chrome */
-  -o-transform: scale(1.3); /* Opera */
-  transform: scale(1.3);
-  padding: 10px;
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.3); /* IE */
+    -moz-transform: scale(1.3); /* FF */
+    -webkit-transform: scale(1.3); /* Safari and Chrome */
+    -o-transform: scale(1.3); /* Opera */
+    transform: scale(1.3);
+    padding: 10px;
+}
+
+// JQUERY ITEMS
+.preview-rest-style {
+    padding: 30px;
+    background: #222;
+    border-radius: 3px;
+    margin: 15px 0 30px;
+    color: #fff;
 }
 
 // FOOTER
