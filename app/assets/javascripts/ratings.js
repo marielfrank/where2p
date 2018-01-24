@@ -3,6 +3,7 @@ $(function() {
     Rating.renderRating = Handlebars.compile(Rating.template);
     listRatings();
     showRatingForm();
+    postRating();
 });
 
 function Rating (attr) {
@@ -32,15 +33,20 @@ function listRatings() {
     });
 }
 
-// function postRating() {
-//     $('.add-rating form').submit(function(e) {
-//         e.preventDefault();
-//         let url = this.action
-//         let formData = $(this).serialize();
-//         console.log(formData);
-        
-//     });
-// };
+function postRating() {
+    $('form#new_rating').submit(function(e) {
+        let url = this.action
+        let formData = $(this).serialize();
+        var postRequest = $.post(url, formData);
+        postRequest.done(function(ratingData) {
+            debugger
+            // let rat = new Rating(ratingData);
+            // let ratDiv = rat.renderNewRating()
+            // $('#js-ratings').append(ratDiv);
+        })
+        e.preventDefault();
+    });
+};
 
 function showRatingForm() {
     $("a#js-add-rating").click( function(e) {
