@@ -20,3 +20,4 @@
 //= require restrooms
 //= require ratings
 //= require handlebars
+//= require google_maps

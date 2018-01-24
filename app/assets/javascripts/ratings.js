@@ -1,6 +1,4 @@
 $(function() {
-    Rating.template = $('#rating-partial').html();
-    Rating.renderRating = Handlebars.compile(Rating.template);
     listRatings();
     showRatingForm();
     postRating();
@@ -17,8 +15,14 @@ Rating.prototype.renderNewRating = function() {
     return Rating.renderRating(this)
 }
 
+function setupHandleBars() {
+    Rating.template = $('#rating-partial').html();
+    Rating.renderRating = Handlebars.compile(Rating.template);
+}
+
 function listRatings() {
     $("#js-view-ratings").on("click", function(e) {
+        setupHandleBars();
         $('#js-ratings').html("")
         let id = $(this).data("id");
         $.get(`/restrooms/${id}/ratings.json`, function(data) {
@@ -36,6 +40,7 @@ function listRatings() {
 
 function postRating() {
     $('form#new_rating').submit(function(e) {
+        setupHandleBars();
         let url = this.action
         let formData = $(this).serialize();
         $.post(url, formData, function(ratingData) {
