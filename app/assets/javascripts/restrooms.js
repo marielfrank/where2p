@@ -5,6 +5,7 @@ $(function() {
 function previewRestroom() {
     $(".js-prev").on("click", function() {
         let id = $(this).data("id");
+        $(".js-prev").show();
         $(this).hide();
         $(".preview-rest").hide();
         $("#preview-rest-" + id).show().addClass('preview-rest-style');

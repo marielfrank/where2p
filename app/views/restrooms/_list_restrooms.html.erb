@@ -1,13 +1,15 @@
 <% restrooms.each do |rr| %>
-    <h4><strong><%= link_to rr.name, restroom_path(rr) %></strong> &mdash; <%= rr.neighborhood.name %></h4>
-    <% if logged_in? %>
-        <p>Your rating: <%= current_user.rating_for(rr) %></p>
-    <% end %>
-    Average rating: <%= rr.average_rating %><br>
-    <button class="js-prev btn ghost-cta" data-id="<%= rr.id %>">Preview</button>
+    <div class="restroom-block">
+        <h4><strong><%= link_to rr.name, restroom_path(rr) %></strong> &mdash; <%= rr.neighborhood.name %></h4>
+        <% if logged_in? %>
+            <p>Your rating: <%= current_user.rating_for(rr) %></p>
+        <% end %>
+        Average rating: <%= rr.average_rating %><br>
+        <button class="js-prev btn ghost-cta" data-id="<%= rr.id %>">Preview</button>
 
-    <div class="preview-rest" id="preview-rest-<%= rr.id %>">
-        <div id="preview-address-<%= rr.id %>"></div>
-        <div id="preview-tags-<%= rr.id %>"></div>
+        <div class="preview-rest" id="preview-rest-<%= rr.id %>">
+            <div id="preview-address-<%= rr.id %>"></div>
+            <div id="preview-tags-<%= rr.id %>"></div>
+        </div>
     </div>
 <% end %>
