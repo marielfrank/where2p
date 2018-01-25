@@ -39,7 +39,10 @@ class UsersController < ApplicationController
     def update
         # attempt to update user with strong params
         if @user.update(user_params)
-            redirect_to restrooms_path, flash: {message: "#{your_or_current.titleize} profile has been updated."}
+            respond_to do |format|
+                format.html { redirect_to restrooms_path, flash: {message: "#{your_or_current.titleize} profile has been updated."} }
+                format.json { render json: @user }
+            end
         else
             # flash errors with 'fields_with_errors' highlighting fields in question
             display_errors(@user, 'users/edit')
@@ -67,6 +70,6 @@ class UsersController < ApplicationController
 
     # use strong params
     def user_params
-        params.require(:user).permit(:name, :password, :email, :admin)
+        params.require(:user).permit(:name, :password, :email, :admin, :current_location)
     end
 end
