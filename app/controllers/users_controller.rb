@@ -70,6 +70,6 @@ class UsersController < ApplicationController
 
     # use strong params
     def user_params
-        params.require(:user).permit(:name, :password, :email, :admin, :current_location)
+        params.require(:user).permit(:name, :password, :email, :admin, :current_lat, :current_lng)
     end
 end

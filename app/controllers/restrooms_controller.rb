@@ -7,6 +7,10 @@ class RestroomsController < ApplicationController
     # load restrooms as instance variable
     def index
         @restrooms = Restroom.all
+        respond_to do |format|
+            format.html { render 'index' }
+            format.json { render json: @restrooms }
+        end
     end
 
     # load restrooms as instance variable
