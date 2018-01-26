@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/auth/google_oauth2/callback' => 'sessions#create'
 
   get '/restrooms/top_five' => 'restrooms#top_five'
+  get '/restrooms/by_distance' => 'restrooms#by_distance'
 
   resources :restrooms do
     resources :ratings, except: [:new, :show]

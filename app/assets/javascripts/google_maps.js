@@ -50,11 +50,12 @@ function getClosestRestrooms(userData) {
         if (status !== 'OK') {
             alert("We weren't able to locate restrooms near you. Error was: " + status);
         } else {
-            restrooms.forEach(function (rest, idx, arr) {
-                rest.distance = response['rows'][0]['elements'][idx]['distance']['text'];
-                rest.duration = response['rows'][0]['elements'][idx]['duration']['text'];
-                saveRestroom(rest);
+            restrooms.forEach(function (restroom, idx, arr) {
+                restroom.distance = response['rows'][0]['elements'][idx]['distance']['text'];
+                restroom.duration = response['rows'][0]['elements'][idx]['duration']['text'];
             });
+        
+            window.location.replace('/restrooms/by_distance');
         };
     });
 };
@@ -66,4 +67,15 @@ function getRestroomsLocs() {
         });
         dests = data.map(rest => `${rest['address']}, NYC`);
     });
-}
+};
+
+function saveRestroom(restroom) {
+    // debugger
+    $.ajax({
+        method: "PATCH",
+        url: `/restrooms/${restroom['id']}`,
+        data: {restroom, authenticity_token: window._token},
+        dataType: "json",
+        async: false
+    });
+};

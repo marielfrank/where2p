@@ -20,6 +20,7 @@ class RestroomsController < ApplicationController
 
     # load restrooms by distance from current user
     def by_distance
+        @restrooms = Restroom.by_distance
     end
 
     # build new restroom for form
@@ -52,8 +53,11 @@ class RestroomsController < ApplicationController
     def update
         # attempt to update restroom using strong params
         if @restroom.update(restroom_params) && @restroom.errors.empty?
-            # redirect with success message
-            redirect_to restroom_path(@restroom), flash: {message: "#{@restroom.name} has been updated."}
+            respond_to do |format|
+                # redirect with success message
+                format.html {redirect_to restroom_path(@restroom), flash: {message: "#{@restroom.name} has been updated."}}
+                format.json {render json: @restroom}
+            end
         else
             # flash errors with 'fields_with_errors' highlighting fields in question
             display_errors(@restroom, 'restrooms/edit')
@@ -79,6 +83,6 @@ class RestroomsController < ApplicationController
 
     # use strong params
     def restroom_params
-        params.require(:restroom).permit(:name, :address, :neighborhood_id, tag_ids: [], tags_attributes: [:description], ratings_attributes: [:user_id, :stars, :comment])
+        params.require(:restroom).permit(:id, :name, :address, :neighborhood_id, :duration, :distance, tag_ids: [], tags_attributes: [:description], ratings_attributes: [:user_id, :stars, :comment])
     end
 end

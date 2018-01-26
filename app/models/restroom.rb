@@ -58,9 +58,9 @@ class Restroom < ApplicationRecord
         self.ratings.any? {|rat| rat.id == nil } ? self.ratings.size - 1 : self.ratings.size
     end
 
-    def self.order_by_distance
+    def self.by_distance
         self.all.sort_by do |rest|
-            rest.duration
+            !!rest.distance ? rest.distance : 1
         end
     end
 
