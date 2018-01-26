@@ -1,5 +1,6 @@
 $(function () {
     shareLocation();
+    getRestroomsLocs();
 });
 
 function User (attr) {
@@ -7,7 +8,15 @@ function User (attr) {
     this.current_lng = attr.current_lng;
 };
 
-let destinations = [];
+function Restroom(attr) {
+    this.address = attr.address;
+    this.id = attr.id;
+    this.duration = attr.duration;
+    this.distance = attr.distance;
+}
+
+let dests = [];
+let restrooms = [];
 
 function shareLocation() {
     $('button#share-location').click(function () {
@@ -29,27 +38,30 @@ function shareLocation() {
 };
 
 function getClosestRestrooms(userData) {
-    let origin = new google.maps.LatLng(userData['current_lat'], userData['current_lng']);
-    debugger
-    getRestroomsLocs();
-    const service = new google.maps.DistanceMatrixService;
-    service.getDistanceMatrix({
+    let origin = { lat: parseFloat(userData['current_lat']), lng: parseFloat(userData['current_lng']) };
+    let service = new google.maps.DistanceMatrixService;
+    let requestData = {
         origins: [origin],
-        destinations: destinations,
+        destinations: dests,
         travelMode: 'WALKING'
-    }, function(response, status) {
-        console.log(response);
-        console.log(status);
+    }
+    service.getDistanceMatrix(requestData, function(response, status) {
         if (status !== 'OK') {
             alert('Error was: ' + status);
         } else {
-            alert('Success!')
+            restrooms.forEach(function (rest) {
+                rest.distance = response['rows'][0]['elements'][(rest.id - 1)]['distance']['text'];
+                rest.duration = response['rows'][0]['elements'][(rest.id - 1)]['duration']['text'];
+            });
         }
     });
 }
 
 function getRestroomsLocs() {
     $.get("/restrooms.json", function(data) {
-        destinations = data.map(rest => rest['address']);
+        data.forEach(rest => {
+            restrooms.push(new Restroom(rest));
+        });
+        dests = data.map(rest => `${rest['address']}, NYC`);
     });
 }
