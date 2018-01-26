@@ -53,6 +53,7 @@ function getClosestRestrooms(userData) {
             restrooms.forEach(function (restroom, idx, arr) {
                 restroom.distance = response['rows'][0]['elements'][idx]['distance']['text'];
                 restroom.duration = response['rows'][0]['elements'][idx]['duration']['text'];
+                saveRestroom(restroom);
             });
         
             window.location.replace('/restrooms/by_distance');

@@ -60,7 +60,7 @@ class Restroom < ApplicationRecord
 
     def self.by_distance
         self.all.sort_by do |rest|
-            !!rest.distance ? rest.distance : 1
+            rest.distance
         end
     end
 
