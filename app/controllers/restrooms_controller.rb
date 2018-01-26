@@ -18,6 +18,10 @@ class RestroomsController < ApplicationController
         @restrooms = Restroom.top_5
     end
 
+    # load restrooms by distance from current user
+    def by_distance
+    end
+
     # build new restroom for form
     def new
         @restroom = Restroom.new

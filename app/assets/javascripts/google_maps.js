@@ -43,19 +43,21 @@ function getClosestRestrooms(userData) {
     let requestData = {
         origins: [origin],
         destinations: dests,
-        travelMode: 'WALKING'
-    }
+        travelMode: 'WALKING',
+        unitSystem: google.maps.UnitSystem.IMPERIAL
+    };
     service.getDistanceMatrix(requestData, function(response, status) {
         if (status !== 'OK') {
-            alert('Error was: ' + status);
+            alert("We weren't able to locate restrooms near you. Error was: " + status);
         } else {
-            restrooms.forEach(function (rest) {
-                rest.distance = response['rows'][0]['elements'][(rest.id - 1)]['distance']['text'];
-                rest.duration = response['rows'][0]['elements'][(rest.id - 1)]['duration']['text'];
+            restrooms.forEach(function (rest, idx, arr) {
+                rest.distance = response['rows'][0]['elements'][idx]['distance']['text'];
+                rest.duration = response['rows'][0]['elements'][idx]['duration']['text'];
+                saveRestroom(rest);
             });
-        }
+        };
     });
-}
+};
 
 function getRestroomsLocs() {
     $.get("/restrooms.json", function(data) {
