@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy'
   get '/auth/google_oauth2/callback' => 'sessions#create'
 
-  get '/restrooms/top_five' => 'restrooms#top_five'
-  get '/restrooms/by_distance' => 'restrooms#by_distance'
+  get '/restrooms/top-five' => 'restrooms#top_five'
+  get '/restrooms/by-distance' => 'restrooms#by_distance'
 
   resources :restrooms do
     resources :ratings, except: [:new, :show]

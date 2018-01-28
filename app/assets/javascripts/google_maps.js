@@ -56,7 +56,7 @@ function getClosestRestrooms(userData) {
                 saveRestroom(restroom);
             });
         
-            window.location.replace('/restrooms/by_distance');
+            window.location.replace('/restrooms/by-distance');
         };
     });
 };
