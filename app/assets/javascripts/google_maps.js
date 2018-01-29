@@ -145,10 +145,10 @@ function initMap() {
 function calculateAndDisplayRoute(restroom) {
     const directionsDisplay = new google.maps.DirectionsRenderer;
     const directionsService = new google.maps.DirectionsService;
-    let startLat = parseFloat(user['current_lat']);
-    let startLng = parseFloat(user['current_lng']);
-    let start = { lat: startLat, lng: startLng };
+
+    let start = { lat: parseFloat(user['current_lat']), lng: parseFloat(user['current_lng']) };
     let end = restroom['address'];
+
     directionsService.route({
       origin: start,
       destination: end,
