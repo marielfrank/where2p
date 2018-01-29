@@ -9,7 +9,7 @@
     <div class="" id="navbarResponsive">
         <ul class="nav navbar-nav ml-auto">
         <% if !!current_user %>
-            <li class="nav-item"><button id="share-location" class="nav-link btn cta" data-id="<%= current_user.id %>">Closest Restrooms!</button></li>
+            <li class="nav-item"><button id="share-location" class="nav-link btn cta">Closest Restrooms!</button></li>
             <li class="nav-item">
             <%= link_to logout_path, method: 'post', class: 'nav-link' do %>
                 <span class="glyphicon glyphicon-log-out"></span> Sign Out

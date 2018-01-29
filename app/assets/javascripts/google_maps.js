@@ -1,8 +1,8 @@
 $(function () {
-    shareLocation();
-    getRestroomsLocs();
     getCurrentUser();
     getUserLocation();
+    shareLocation();
+    getRestroomsLocs();
     getDirections();
 });
 
@@ -31,10 +31,10 @@ function getCurrentUser() {
 
 function shareLocation() {
     $('button#share-location').click(function () {
-        const id = $(this).data('id');
         navigator.geolocation.getCurrentPosition(function (pos) {
             let lat = pos.coords.latitude;
             let lng = pos.coords.longitude;
+            let id = user.id
             user = new User({current_lat: lat, current_lng: lng});
             $.ajax({
                 method: "PATCH",
@@ -118,30 +118,6 @@ function initMap() {
     return
 }
 
-// function initMapById(id) {
-    // const directionsDisplay = new google.maps.DirectionsRenderer;
-    // const directionsService = new google.maps.DirectionsService;
-//     // let map = new google.maps.Map($(`#map-${id}`), {
-//     //   zoom: 7,
-//     //   center: {lat: 40.730610, lng: -73.935242}
-//     // });
-//     var directionsDisplay = new google.maps.DirectionsRenderer;
-//     var directionsService = new google.maps.DirectionsService;
-//     var map = new google.maps.Map(document.getElementById('map'), {
-//         zoom: 7,
-//         center: {lat: 41.85, lng: -87.65}
-//     });
-
-//     directionsDisplay.setMap(map);
-//     // debugger
-//     // directionsDisplay.setPanel($(`#right-panel-${id}`));
-
-//     // const control = $('#floating-panel');
-//     // control.style.display = 'block';
-//     // map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
-
-// }
-
 function calculateAndDisplayRoute(restroom) {
     const directionsDisplay = new google.maps.DirectionsRenderer;
     const directionsService = new google.maps.DirectionsService;
@@ -157,6 +133,13 @@ function calculateAndDisplayRoute(restroom) {
       if (status === 'OK') {
         directionsDisplay.setDirections(response);
         directionsDisplay.setPanel(document.getElementById(`right-panel-${restroom.id}`));
+        debugger
+        var map = new google.maps.Map(document.getElementById(`map-${restroom.id}`), {
+            zoom: 7,
+            center: {lat: 41.85, lng: -87.65}
+        });
+    
+        directionsDisplay.setMap(map);
       } else {
         alert('Directions request failed due to ' + status);
       }
