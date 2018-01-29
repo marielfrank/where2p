@@ -11,7 +11,10 @@ class UsersController < ApplicationController
     end
 
     def show
-        @restrooms = @user.restrooms
+        respond_to do |format|
+            format.html { @restrooms = @user.restrooms }
+            format.json { render json: @user }
+        end
     end
 
     def new
