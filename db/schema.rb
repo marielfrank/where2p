@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20180126185107) do
     t.integer "neighborhood_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "duration"
-    t.float "distance"
+    t.string "duration"
+    t.string "distance"
   end
 
   create_table "tags", force: :cascade do |t|

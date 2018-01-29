@@ -2,6 +2,9 @@
     <div class="restroom-block">
         <h4><strong><%= link_to rr.name, restroom_path(rr) %></strong> &mdash; <%= rr.neighborhood.name %></h4>
         <% if logged_in? %>
+            <% if !!current_user.current_lat && !!current_user.current_lng %>
+                <%= rr.duration %> walking, <%= rr.distance %> away
+            <% end %>
             <p>Your rating: <%= current_user.rating_for(rr) %></p>
         <% end %>
         Average rating: <%= rr.average_rating %><br>
