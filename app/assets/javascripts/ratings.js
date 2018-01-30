@@ -1,4 +1,5 @@
-$(function() {
+// fire functions after turbolinks has loaded
+$(document).on('turbolinks:load', function() {
     listRatings();
     showRatingForm();
     postRating();

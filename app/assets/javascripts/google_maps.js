@@ -1,4 +1,5 @@
-$(function () {
+// fire functions after turbolinks has loaded
+$(document).on('turbolinks:load', function () {
     getCurrentUser();
     getUserLocation();
     shareLocation();
@@ -6,24 +7,29 @@ $(function () {
     getDirections();
 });
 
+// set empty variables for later use
 let dests = [];
 let restrooms = [];
 let user = null;
 let map = null;
 
+// user object function to keep track of current user's location
 function User (attr) {
     this.id = attr.id;
     this.current_lat = attr.current_lat;
     this.current_lng = attr.current_lng;
 };
 
+// restroom object to keep track of restrooms in Distance Matrix 
+// as related to Rails objects
 function Restroom(attr) {
-    this.address = attr.address;
     this.id = attr.id;
+    this.address = attr.address;
     this.duration = attr.duration;
     this.distance = attr.distance;
 }
 
+// get current user from layout div
 function getCurrentUser() {
     let userId = $('#cu').data("cu");
     user = new User({id: userId});
@@ -31,18 +37,27 @@ function getCurrentUser() {
 }
 
 function shareLocation() {
+    // listen for share-location button to be clicked
     $('button#share-location').click(function () {
+        // get device's geolocation position
         navigator.geolocation.getCurrentPosition(function (pos) {
+            // get latitude & longitude of position
             let lat = pos.coords.latitude;
             let lng = pos.coords.longitude;
+            // get current user's id
             let id = user.id
+            // create user object with latitude & longitude
             user = new User({current_lat: lat, current_lng: lng});
+            // send patch request to current user's update path
+            // get authenticity token from window
             $.ajax({
                 method: "PATCH",
                 url: `/users/${id}`,
                 data: {user, authenticity_token: window._token},
                 dataType: "json"
               }).done(function (userData) {
+                  // after user has been updated, 
+                  // get list of closest restrooms using response data
                   getClosestRestrooms(userData);
               });
         });
