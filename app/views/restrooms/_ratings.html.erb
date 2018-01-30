@@ -11,4 +11,8 @@
 
 <!-- link to rate restroom -->
 Been to this restroom?<br>
-<%= link_to "Rate #{restroom.name}", "#", html_options = {class: 'btn cta', id: 'js-add-rating', data: {id: restroom.id}} if logged_in?%>
+<% if logged_in? %>
+    <%= link_to "Rate #{restroom.name}", "#", html_options = {class: 'btn cta', id: 'js-add-rating', data: {id: restroom.id}} %>
+<% else %>
+    <%= link_to "Log in to add a rating", new_session_path, html_options = {class: 'btn cta'} %>
+<% end %>

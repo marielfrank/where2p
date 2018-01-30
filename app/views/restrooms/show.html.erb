@@ -21,7 +21,7 @@
 
 <%= render 'layouts/close_main_open_nav' %>
 <!-- link to see other restrooms in same neighborhood -->
-<%= link_to "See other restrooms in #{@restroom.neighborhood.name}", neighborhood_path(@restroom.neighborhood), class: 'btn ghost-cta' %>
+<%= link_to "More in #{@restroom.neighborhood.name}", neighborhood_path(@restroom.neighborhood), class: 'btn ghost-cta' %>
 <%= render 'layouts/right_nav_links' %>
 
 <!-- handlebars template for rating -->
