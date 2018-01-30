@@ -40,4 +40,8 @@ class User < ApplicationRecord
     def rating_for(restroom)
         !!self.ratings.where(restroom: restroom).last ? self.ratings.where(restroom: restroom).last.stars : "You haven't rated this restroom yet."
     end
+
+    def reset_position
+        self.update(current_lat: nil, current_lng: nil)
+    end
 end

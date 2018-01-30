@@ -64,4 +64,10 @@ class Restroom < ApplicationRecord
         end
     end
 
+    def self.reset_distance_duration
+        self.all.each do |rest|
+            rest.update(distance: nil, duration: nil)
+        end
+    end
+
 end
