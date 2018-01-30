@@ -28,9 +28,9 @@ class SessionsController < ApplicationController
 
     # log out & redirect to homepage
     def destroy
-        session.clear
         Restroom.reset_distance_duration
         current_user.reset_position
+        session.clear
         redirect_to root_path
     end
 
