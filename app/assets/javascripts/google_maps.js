@@ -65,59 +65,78 @@ function shareLocation() {
 };
 
 function getClosestRestrooms(userData) {
+    // set Distance Matrix origin from user's current latitude & longitude
     let origin = { lat: parseFloat(userData['current_lat']), lng: parseFloat(userData['current_lng']) };
+    // instantiate Distance Matrix service
     let service = new google.maps.DistanceMatrixService;
+    // set request data
     let requestData = {
         origins: [origin],
+        // dests was set on turbolinks load through getRestroomLocs()
         destinations: dests,
         travelMode: 'WALKING',
         unitSystem: google.maps.UnitSystem.IMPERIAL
     };
+    // send get request through API
     service.getDistanceMatrix(requestData, function(response, status) {
         if (status !== 'OK') {
             alert("We weren't able to locate restrooms near you. Error was: " + status);
         } else {
+            // set each JS restroom object's distance and duration from user
             restrooms.forEach(function (restroom, idx, arr) {
                 restroom.distance = response['rows'][0]['elements'][idx]['distance']['text'];
                 restroom.duration = response['rows'][0]['elements'][idx]['duration']['text'];
+                // save restroom data in Rails database
                 saveRestroom(restroom);
             });
-        
+            // redirect to /restrooms/by-distance
             window.location.replace('/restrooms/by-distance');
         };
     });
 };
 
+// called when turbolinks load
 function getRestroomsLocs() {
+    // fire get request for restrooms json data
     $.get("/restrooms.json", function(data) {
+        // create restroom objects & add to restrooms array
         data.forEach(rest => {
             restrooms.push(new Restroom(rest));
         });
+        // add restroom addresses to dests array
         dests = data.map(rest => `${rest['address']}, NYC`);
     });
 };
 
 function saveRestroom(restroom) {
+    // send patch request to update restroom
     $.ajax({
         method: "PATCH",
         url: `/restrooms/${restroom['id']}`,
         data: {restroom, authenticity_token: window._token},
         dataType: "json",
+        // send requests one at a time so database doesn't get overloaded
         async: false
     });
 };
 
 function getDirections() {
+    // listen for 'get directions' to be clicked
     $('.get-directions').click( function () {
+        // reset all maps & directions panels
         $('.map').html("");
         $('.map').removeClass('highlight-map');
         $('.directions-panel').html("");
+        // get restroom id from clicked button
         let id = Number(this.id);
+        // find JS restroom object by id
         let restroom = findById(id);
+        // fire function to get directions for restroom
         calculateAndDisplayRoute(restroom);
     });
 };
 
+// find JS restroom object by id using #find
 function findById(id) {
     return restrooms.find(function (restroom) {
         return restroom.id === id;
@@ -125,37 +144,48 @@ function findById(id) {
 };
 
 function getUserLocation() {
+    // get current user's id
     let userId = user.id;
+    // send get request for current user's json data
     $.get(`/users/${userId}.json`, function (userData) {
+        // reset JS user object with current position data
         user = new User({id: userId, current_lat: userData['current_lat'], current_lng: userData['current_lng']});
     });
 };
 
+// console throws an error when this function isn't here...
 function initMap() {
-
 }
 
 function calculateAndDisplayRoute(restroom) {
-    const directionsDisplay = new google.maps.DirectionsRenderer;
+    // instantiate Google Maps Directions service & display
     const directionsService = new google.maps.DirectionsService;
+    const directionsDisplay = new google.maps.DirectionsRenderer;
 
+    // set start and end points for directions request
     let start = { lat: parseFloat(user['current_lat']), lng: parseFloat(user['current_lng']) };
     let end = restroom['address'];
 
+    // send Directions get request through Google's API
     directionsService.route({
       origin: start,
       destination: end,
       travelMode: 'WALKING'
     }, function(response, status) {
       if (status === 'OK') {
+        // set the response for directionsDisplay
         directionsDisplay.setDirections(response);
+        // use setPanel to display directions
         directionsDisplay.setPanel(document.getElementById(`right-panel-${restroom.id}`));
 
+        // make current restroom's map div visible
         $(`#map-${restroom.id}`).addClass('highlight-map');
+        // instantiate new map in div
         map = new google.maps.Map(document.getElementById(`map-${restroom.id}`), {
             center: {lat: 40.71427, lng: -74.00597},
             zoom: 10
         });
+        // set directions to display on map
         directionsDisplay.setMap(map);
 
       } else {
