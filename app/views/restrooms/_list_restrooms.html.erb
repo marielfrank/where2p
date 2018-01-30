@@ -3,9 +3,9 @@
         <h4><strong><%= link_to rr.name, restroom_path(rr) %></strong> &mdash; <%= rr.neighborhood.name %></h4>
         <% if logged_in? %>
             <% if !!current_user.current_lat && !!current_user.current_lng %>
-                <%= rr.duration %> walking, <%= rr.distance %> away | <button class="get-directions" id="<%= rr.id %>">Get Directions</button>
-                <div id="right-panel-<%= rr.id %>" class="directions-panel"></div>
+                <%= rr.duration %> walking, <%= rr.distance %> away &nbsp;&nbsp;&nbsp; <button class="get-directions btn ghost-cta" id="<%= rr.id %>">Get Directions</button>
                 <div id="map-<%= rr.id %>" class="map" width="500"></div>
+                <div id="right-panel-<%= rr.id %>" class="directions-panel"></div>
             <% end %>
             <p>Your rating: <%= current_user.rating_for(rr) %></p>
         <% end %>

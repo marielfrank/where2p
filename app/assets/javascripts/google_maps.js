@@ -9,6 +9,7 @@ $(function () {
 let dests = [];
 let restrooms = [];
 let user = null;
+let map = null;
 
 function User (attr) {
     this.id = attr.id;
@@ -94,6 +95,7 @@ function saveRestroom(restroom) {
 function getDirections() {
     $('.get-directions').click( function () {
         $('.map').html("");
+        $('.map').removeClass('highlight-map');
         $('.directions-panel').html("");
         let id = Number(this.id);
         let restroom = findById(id);
@@ -115,7 +117,7 @@ function getUserLocation() {
 };
 
 function initMap() {
-    return
+
 }
 
 function calculateAndDisplayRoute(restroom) {
@@ -133,13 +135,14 @@ function calculateAndDisplayRoute(restroom) {
       if (status === 'OK') {
         directionsDisplay.setDirections(response);
         directionsDisplay.setPanel(document.getElementById(`right-panel-${restroom.id}`));
-        debugger
-        var map = new google.maps.Map(document.getElementById(`map-${restroom.id}`), {
-            zoom: 7,
-            center: {lat: 41.85, lng: -87.65}
+
+        $(`#map-${restroom.id}`).addClass('highlight-map');
+        map = new google.maps.Map(document.getElementById(`map-${restroom.id}`), {
+            center: {lat: 40.71427, lng: -74.00597},
+            zoom: 10
         });
-    
         directionsDisplay.setMap(map);
+
       } else {
         alert('Directions request failed due to ' + status);
       }
