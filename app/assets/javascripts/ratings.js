@@ -65,9 +65,11 @@ function postRating() {
         let formData = $(this).serialize();
         // send post request to /ratings with form data
         $.post(url, formData, function(ratingData) {
-            // 
+            // create new JS rating object with response data
             let rat = new Rating(ratingData);
+            // render newly created rating with Handlebars
             let ratDiv = rat.renderNewRating()
+            // add rating to ratings div
             $('#js-ratings').append(ratDiv);
         // specify that request is for json format
         }, "json");
@@ -78,9 +80,13 @@ function postRating() {
 };
 
 function showRatingForm() {
+    // when add rating link is clicked
     $("a#js-add-rating").click( function(e) {
+        // show form
         $("div.hide").removeClass('hide');
+        // hide 'add rating link'
         $('a#js-add-rating').hide();
+        // prevent button from removing js elements from page
         e.preventDefault();
     });
 };
