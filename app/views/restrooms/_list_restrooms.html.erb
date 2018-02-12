@@ -3,7 +3,7 @@
         <h4><strong><%= link_to rr.name, restroom_path(rr) %></strong> &mdash; <%= rr.neighborhood.name %></h4>
         <% if logged_in? %>
             <% if !!current_user.current_lat && !!current_user.current_lng %>
-                <%= rr.duration %> walking, <%= rr.distance %> away &nbsp;&nbsp;&nbsp; <button class="get-directions btn ghost-cta" id="<%= rr.id %>">Get Directions</button>
+                <%= rr.duration %> walking, <%= rr.distance %> away &nbsp;&nbsp;&nbsp; <button class="get-directions btn ghost-cta" id="<%= rr.id %>">Get Directions</button><button class="hide btn cta collapse-directions" id="collapse-<%= rr.id %>">x</button>
                 <div id="map-<%= rr.id %>" class="map" width="500"></div>
                 <div id="right-panel-<%= rr.id %>" class="directions-panel"></div>
             <% end %>

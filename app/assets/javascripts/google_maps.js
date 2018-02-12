@@ -5,6 +5,7 @@ $(document).on('turbolinks:load', function () {
     shareLocation();
     getRestroomsLocs();
     getDirections();
+    collapseDirections();
 });
 
 // set empty variables for later use
@@ -133,6 +134,9 @@ function getDirections() {
         let restroom = findById(id);
         // fire function to get directions for restroom
         calculateAndDisplayRoute(restroom);
+        $(".get-directions").show();
+        $(`#${id}`).hide();
+        $(`#collapse-${id}`).removeClass("hide");
     });
 };
 
@@ -188,4 +192,14 @@ function calculateAndDisplayRoute(restroom) {
         alert('Directions request failed due to ' + status);
       }
     });
+}
+
+function collapseDirections() {
+    $(".collapse-directions").click(function () {
+        let id = this.id.split("-")[1];
+        $(`#map-${id}`).html('');
+        $(`#right-panel-${id}`).html('');
+        $(`#${id}`).show();
+        $(`#collapse-${id}`).addClass("hide");
+    })
 }
