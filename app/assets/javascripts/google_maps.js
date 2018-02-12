@@ -153,10 +153,6 @@ function getUserLocation() {
     });
 };
 
-// console throws an error when this function isn't here...
-function initMap() {
-}
-
 function calculateAndDisplayRoute(restroom) {
     // instantiate Google Maps Directions service & display
     const directionsService = new google.maps.DirectionsService;
