@@ -3,6 +3,7 @@ $(document).on('turbolinks:load', function() {
     listRatings();
     showRatingForm();
     postRating();
+    viewBest();
 });
 
 // rating object function
@@ -15,6 +16,7 @@ function Rating (attr) {
 
 // render newly created rating for JS rating object using Handlebars template
 Rating.prototype.renderNewRating = function() {
+    // debugger
     return Rating.renderRating(this)
 }
 
@@ -90,3 +92,44 @@ function showRatingForm() {
         e.preventDefault();
     });
 };
+
+function viewBest() {
+    // look at the ratings.json for this restroom
+    // filter for ratings with stars >= 3
+    // display those ratings
+    $('button.viewBest').click( function(e) {
+        let id = $(this).data("id");
+        // get Handlebars ready
+        setupHandleBars();
+        // reset div's contents
+        $('#js-ratings').html("")
+        // send get request for current restroom's json data
+        $.get(`/restrooms/${id}/ratings.json`, function(data) {
+            // push below any other contents
+            $('#js-ratings').append('<br>');
+            // debugger
+            let bestRatings = data.filter( rating =>
+                rating.stars >= 3
+            )
+
+            let sortedBest = bestRatings.sort(function (a, b) {
+                return a.stars < b.stars
+            })
+
+            sortedBest.forEach(rating => {
+                // debugger
+                // create new JS rating object for each rating
+                let rat = new Rating(rating);
+                // send rating's data to Handlebars template
+                // debugger
+                let ratDiv = rat.renderNewRating();
+                // add Handlebars rendered rating to ratings div
+                $('#js-ratings').append(ratDiv);
+                // $('#js-ratings').append(rat);
+            });
+        });
+        // hide preview button
+        // $('a#js-view-ratings').hide();
+        e.preventDefault();
+    })
+}

@@ -3,6 +3,7 @@
 <% if restroom.ratings_quantity > 0 %>
     <b>Average Rating: </b><%#= pluralize(restroom.average_rating, 'stars') %><br>
     <%= link_to 'View ratings', "#", html_options = {class: 'btn cta', id: 'js-view-ratings', data: {id: restroom.id}} %>
+    <button class="viewBest btn cta" data-id="<%= restroom.id %>">View ratings over 3 stars</button>
     <div id="js-ratings"></div>
 <% else %>
     <%= no_resource("rating") %>
