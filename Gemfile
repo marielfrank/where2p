@@ -70,3 +70,6 @@ gem 'active_model_serializers'
 
 # for handlebars templating
 gem 'handlebars_assets'
+
+# Ruby version
+ruby "2.5.1"
