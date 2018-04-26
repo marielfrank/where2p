@@ -105,7 +105,7 @@ function getRestroomsLocs() {
             restrooms.push(new Restroom(rest));
         });
         // add restroom addresses to dests array
-        dests = data.map(rest => `${rest['address']}, NYC`);
+        dests = data.map(rest => rest['address']);
     });
 };
 

@@ -60,7 +60,11 @@ class Restroom < ApplicationRecord
 
     def self.by_distance
         self.all.sort_by do |rest|
-            rest.distance.split(" mi").join("").to_f
+            if rest.distance.match('ft')
+                rest.distance.split(" ft").join("").to_f/5280
+            else
+                rest.distance.split(" mi").join("").to_f
+            end
         end
     end
 
